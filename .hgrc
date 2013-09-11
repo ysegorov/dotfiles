@@ -1,0 +1,40 @@
+[ui]
+username = Egorov Yuri <ysegorov@gmail.com>
+#verbose = True
+ssh = ssh -C
+
+[hostfingerprints]
+bitbucket.org = 24:9c:45:8b:9c:aa:ba:55:4e:01:6d:58:ff:e4:28:7d:2a:14:ae:3b
+
+[diff]
+git = True
+
+[merge-patterns]
+** = filemerge
+
+[merge-tools]
+filemerge.executable = vim
+filemerge.args = -d $local $other
+filemerge.checkchanged = true
+filemerge.gui = true
+
+[extensions]
+color =
+graphlog =
+mq =
+bisect = 
+rebase =
+convert =
+notify =
+churn =
+
+[color]
+status.modified = magenta bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = blue bold
+status.ignored = black bold
+
+[alias]
+pb = ! export REV=$1; export REV=${REV:-.} ; echo hg parent-branch ${REV}; $HG log -r "parents(min(branch(${REV})))"

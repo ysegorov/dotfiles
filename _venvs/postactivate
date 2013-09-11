@@ -1,0 +1,10 @@
+#!/bin/bash
+# This hook is run after every virtualenv is activated.
+
+export PREV_CWD=`pwd`
+export PREV_PATH=$PATH
+export NODE_PATH=$VIRTUAL_ENV/node_modules
+export PATH=$NODE_PATH/.bin:$PATH
+
+alias cdlib='cd $VIRTUAL_ENV/_lib'
+alias cdsrc='cd $VIRTUAL_ENV/src'
