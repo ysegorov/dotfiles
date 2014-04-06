@@ -1,4 +1,5 @@
-# /etc/bash/bashrc
+#
+# /etc/bash.bashrc
 #
 # This file is sourced by all *interactive* bash shells on startup,
 # including some apparently interactive shells such as scp and rcp
@@ -33,6 +34,8 @@ case ${TERM} in
 		;;
 esac
 
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+
 use_color=false
 
 # Set colorful PS1 only on colorful terminals.
@@ -47,7 +50,8 @@ match_lhs=""
 [[ -z ${match_lhs}    ]] \
 	&& type -P dircolors >/dev/null \
 	&& match_lhs=$(dircolors --print-database)
-[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+use_color=true
+#[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
 if ${use_color} ; then
 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
@@ -75,9 +79,6 @@ else
 		PS1='\u@\h \w \$ '
 	fi
 fi
-
-# Try to keep environment pollution down, EPA loves us.
-unset use_color safe_term match_lhs
 
 
 # name to be used in PS1 prompt
@@ -275,3 +276,7 @@ hgchanges()
     done
 }
 alias hgch='hgchanges'
+
+# Try to keep environment pollution down, EPA loves us.
+unset use_color safe_term match_lhs
+
