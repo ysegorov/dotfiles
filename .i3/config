@@ -10,6 +10,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $term 1
+set $web 2
+set $pg 3
+set $img 4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -93,10 +97,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace $term
+bindsym $mod+2 workspace $web
+bindsym $mod+3 workspace $pg
+bindsym $mod+4 workspace $img
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -105,10 +109,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace $term
+bindsym $mod+Shift+2 move container to workspace $web
+bindsym $mod+Shift+3 move container to workspace $pg
+bindsym $mod+Shift+4 move container to workspace $img
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -168,6 +172,41 @@ mode "$mode_system" {
 bindsym $mod+q mode "$mode_system"
 
 
+# TODO check
+mode "focused" {
+
+                # hardcoded focus keybindings
+                bindsym b [class="(?i)firefox"] focus
+                bindsym w [class="(?i)terminal" title="weechat"] focus
+                bindsym m [class="(?i)thunderbird"] focus
+                bindsym f [class="(?i)terminal" title="mc"] focus
+                bindsym z [class="(?i)zathura"] focus
+
+                # keybindings for marking and jumping to clients
+                bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '
+                bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+                # Assign marks to keys 1-5
+                bindsym Shift+1 mark mark1
+                bindsym Shift+2 mark mark2
+                bindsym Shift+3 mark mark3
+                bindsym Shift+4 mark mark4
+                bindsym Shift+5 mark mark5
+
+                # Jump to clients marked 1-5
+                bindsym 1 [con_mark="mark1"] focus
+                bindsym 2 [con_mark="mark2"] focus
+                bindsym 3 [con_mark="mark3"] focus
+                bindsym 4 [con_mark="mark4"] focus
+                bindsym 5 [con_mark="mark5"] focus
+
+                # Exit to the default mode
+                bindsym Return mode "default"
+                bindsym Escape mode "default"
+}
+
+bindsym $mod+n mode "focused"
+
 # default client colors
 # class                 border  backgr. text    indicator
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4
@@ -189,9 +228,9 @@ bar {
         status_command ~/bin/i3status.sh
         position top
         mode dock
-        
+
         tray_output primary
-        
+
     font xft:Droid Sans Mono 8
     colors {
         # background #090020
@@ -234,9 +273,9 @@ bar {
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 4
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 4
-bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 3%+ unmute
-bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 3%- unmute
-bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/amixer set Master 3%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/amixer set Master 3%- unmute
+bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer set Master toggle
 #bindsym XF86AudioNext exec /usr/bin/audacious --fwd
 #bindsym XF86AudioPrev exec /usr/bin/audacious --rew
 #bindsym XF86Play exec /usr/bin/audacious --play-pause
@@ -245,45 +284,47 @@ bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
 #bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
 #bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 
-bindsym $Win+Tab workspace next
-bindsym $Win+Shift+Tab workspace prev
-
-bindsym $Alt+Tab focus right
-bindsym $Alt+Shift+Tab focus left
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # Scratchpad
-#bindsym $mod+m move scratchpad
-#bindsym $mod+o scratchpad show
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
 
 # Options tweaking
 default_orientation auto
 focus_follows_mouse yes
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
+hide_edge_borders vertical
 
+#  switch back and forth between the last two workspaces
+bindsym $mod+z workspace back_and_forth
 
 # assign: use xorg-xprop to learn the class string
-# assign [class="^Chromium$"] → $workspace2
-# assign [class="^Firefox$"] → $workspace2
-# assign [class="^Midori$"] → $workspace2
+assign [class="^Chromium$"] → $web
+assign [class="^Firefox$"] → $web
+assign [class="^Midori$"] → $web
+assign [class="^Thunderbird$"] → $web
+assign [class="^Pgadmin3$"] → $pg
 
 
 # for_window
-for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"] floating enable
-for_window [class="^Chromium$"] border 1pixel
-for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
+for_window [window_role="pop-up"] floating enable, move absolute center, focus
+for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"] floating enable, focus
+for_window [class="^Chromium$"] border 1pixel, focus
+for_window [class="^Thunderbird$"] border 1pixel, focus
+for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle, focus
 for_window [class="scratchpad"] move scratchpad
-for_window [class="^Pidgin$"] floating enable, focus mode_toggle
+for_window [class="^Pidgin$"] floating enable, focus mode_toggle, focus
+
+# focus
+bindsym $mod+Shift+b [class="Chromium"] focus
+bindsym $mod+Shift+m [class="Thunderbird"] focus
 
 #exec --no-startup-id xrandr --output LVDS --primary
 
 # i3 startup
-# Foreground
-#exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
-#exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
-#exec --no-startup-id i3-msg 'workspace $workspace1'
-#exec --no-startup-id "${TERMINAL} --class=scratchpad"
 
 # Background
 #exec --no-startup-id /usr/bin/CopyAgent
@@ -292,4 +333,4 @@ for_window [class="^Pidgin$"] floating enable, focus mode_toggle
 ## exec --no-startup-id /usr/bin/wicd-gtk -t
 #exec --no-startup-id /usr/bin/redshift # on background
 #exec --no-startup-id /usr/bin/dunst    # simple notification daemon
-exec_always setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll" -variant ",winkeys"
+exec_always --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll" -variant ",winkeys"

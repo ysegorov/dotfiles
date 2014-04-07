@@ -29,8 +29,8 @@
 !*color7: #707880
 !*color15: #C5C8C6
 
-URxvt.font:             xft:Ubuntu Mono:size=9:antialias=false
-URxvt.boldFont:         xft:Ubuntu Mono:size=9:antialias=false
+URxvt.font:             xft:Terminus:size=9:antialias=false
+URxvt.boldFont:         xft:Terminus:size=9:antialias=false
 URxvt*background:       black
 URxvt*foreground:       grey
 URxvt.scrollBar:        false
