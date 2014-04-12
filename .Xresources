@@ -1,109 +1,43 @@
-! Hybrid Terminal Colours. Uses the palette from Tomorrow-Night:
-! https://github.com/chriskempson/tomorrow-theme/blob/master/vim/colors/Tomorrow-Night.vim
 ! vim: ft=xdefaults
 
-! ---------------------------------------------
-! https://github.com/solarized/xresources
-!
-! Solarized color scheme for the X Window System
-!
 ! http://ethanschoonover.com/solarized
+! color settings from https://github.com/blaenk/dots
 
-
-! Common
-
-#define S_yellow        #b58900
-#define S_orange        #cb4b16
-#define S_red           #dc322f
-#define S_magenta       #d33682
-#define S_violet        #6c71c4
-#define S_blue          #268bd2
-#define S_cyan          #2aa198
-#define S_green         #859900
-
-
-! Dark
-
-#define S_base03        #002b36
-#define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
-
-
-! Light
-
-! #define S_base03        #fdf6e3
-! #define S_base02        #eee8d5
-! #define S_base01        #93a1a1
-! #define S_base00        #839496
-! #define S_base0         #657b83
-! #define S_base1         #586e75
-! #define S_base2         #073642
-! #define S_base3         #002b36
-
-
-! To only apply colors to your terminal, for example, prefix
-! the color assignment statement with its name. Example:
-!
-! URxvt*background:            S_base03
-
-*background:              S_base03
-*foreground:              S_base0
-*fading:                  40
-*fadeColor:               S_base03
-*cursorColor:             S_base1
-*pointerColorBackground:  S_base01
-*pointerColorForeground:  S_base1
-
-*color0:                  S_base02
-*color1:                  S_red
-*color2:                  S_green
-*color3:                  S_yellow
-*color4:                  S_blue
-*color5:                  S_magenta
-*color6:                  S_cyan
-*color7:                  S_base2
-*color8:                  S_base03
-*color9:                  S_orange
-*color10:                 S_base01
-*color11:                 S_base00
-*color12:                 S_base0
-*color13:                 S_violet
-*color14:                 S_base1
-*color15:                 S_base3
- 
 ! ---------------------------------------------
 
 ! rxvt-unicode
 !
 URxvt.font:             xft:Terminus:size=9:antialias=false
 URxvt.boldFont:         xft:Terminus:size=9:antialias=false
-!URxvt*background:       black
-!URxvt*foreground:       grey
 URxvt.scrollBar:        false
 URxvt*saveLines:        65536
 URxvt*.transparent:     true
-!URxvt*.shading:         20
-!URxvt.color0:           #000000
-!URxvt.color1:           #CC0000
-!URxvt.color2:           #4E9A06
-!URxvt.color3:           #C4A000
-!URxvt.color4:           #3465A4
-!URxvt.color5:           #75507B
-!URxvt.color6:           #06989A
-!URxvt.color7:           #D3D7CF
-!URxvt.color8:           #555753
-!URxvt.color9:           #EF2929
-!URxvt.color10:          #8AE234
-!URxvt.color11:          #FCE94F
-!URxvt.color12:          #729FCF
-!URxvt.color13:          #AD7FA8
-!URxvt.color14:          #34E2E2
-!URxvt.color15:          #EEEEEC
+URxvt*.shading:         20
+
+URxvt*background:              #fdf6e3
+URxvt*foreground:              #657b83
+URxvt*cursorColor:             #2aa198
+URxvt*pointerColorBackground:  #93a1a1
+URxvt*pointerColorForeground:  #586e75
+
+URxvt*color0:                  #073642
+URxvt*color1:                  #dc322f
+URxvt*color2:                  #859900
+URxvt*color3:                  #b58900
+URxvt*color4:                  #268bd2
+URxvt*color5:                  #d33682
+URxvt*color6:                  #2aa198
+URxvt*color7:                  #eee8d5
+
+URxvt*color8:                  #002b36
+URxvt*color9:                  #cb4b16
+URxvt*color10:                 #586e75
+URxvt*color11:                 #657b83
+URxvt*color12:                 #839496
+URxvt*color13:                 #6c71c4
+URxvt*color14:                 #93a1a1
+URxvt*color15:                 #fdf6e3
+
 URxvt*iso14755:         false
 URxvt.perl-ext:         default
 URxvt.perl-ext-common:  default,matcher,vtwheel,clipboard,keyboard-select,url-select
