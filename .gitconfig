@@ -1,0 +1,48 @@
+[user]
+  email = egorov@4int.ru
+  name = Egorov Yuri
+[core]
+  editor = vim
+  pager = less -+$LESS -FRX
+[alias]
+  br = branch
+  bs = bisect
+  ci = commit
+  cl = clone
+  co = checkout
+  cp = cherry-pick
+  df = diff
+  dfw = diff --word-diff
+  dfc = diff --cached
+  dfcw = diff --cached --word-diff
+  dft = difftool
+  dftc = difftool --cached
+  gr = grep --break --heading --line-number
+  lg = log --graph --oneline --format='%C(green)%h%C(auto)%d%Creset %C(magenta)%aN%Creset %s %C(yellow)%cr%Creset'
+  mrg = merge
+  pl = pull
+  ps = push
+  rem = remote
+  rh = reset --hard HEAD
+  rup = remote update
+  sb = status -sb
+  sh = stash
+  sm = submodule
+  st = status
+  vs = !gitx --all
+[color]
+  ui = true
+  branch = auto
+  diff = auto
+  grep = auto
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[push]
+  default = simple
+[grep]
+  extendRegexp = true
+  lineNumber = true
+[github]
+  user = ysegorov
