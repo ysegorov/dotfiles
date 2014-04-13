@@ -17,14 +17,33 @@ fi
 # name to be used in PS1 prompt
 PS1_NAME="local"
 
-# Bash won't get SIGWINCH if another process is in the foreground.
-# Enable checkwinsize so that bash will check the terminal size when
-# it regains control.  #65623
-# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
-shopt -s checkwinsize
 
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
+# bash options ------------------------------------
+#set -o vi                   # Vi mode
+#set -o noclobber            # do not overwrite files
+#shopt -s autocd             # change to named directory
+#shopt -s cdable_vars        # if cd arg is not valid, assumes its a var defining a dir
+shopt -s cdspell            # autocorrects cd misspellings
+shopt -s checkwinsize       # update the value of LINES and COLUMNS after each command if altered
+shopt -s cmdhist            # save multi-line commands in history as single line
+shopt -s histappend         # do not overwrite history
+shopt -s dotglob            # include dotfiles in pathname expansion
+shopt -s expand_aliases     # expand aliases
+shopt -s extglob            # enable extended pattern-matching features
+shopt -s globstar           # recursive globbing
+shopt -s progcomp           # programmable completion
+shopt -s hostcomplete       # attempt hostname expansion when @ is at the beginning of a word
+shopt -s nocaseglob         # pathname expansion will be treated as case-insensitive
+
+set bell-style visual       # visual bell
+
+# set history variables
+unset HISTFILESIZE
+HISTSIZE=100000
+HISTCONTROL=ignoredups:ignorespace
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Change the window title of X terminals
 case ${TERM} in
