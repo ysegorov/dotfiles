@@ -207,40 +207,54 @@ mode "focused" {
 
 bindsym $mod+n mode "focused"
 
+# Solarized theme
+set $base03    #002b36
+set $base02    #073642
+set $base01    #586e75
+set $base00    #657b83
+set $base0     #839496
+set $base1     #93a1a1
+set $base2     #eee8d5
+set $base3     #fdf6e3
+set $yellow    #b58900
+set $orange    #cb4b16
+set $red       #dc322f
+set $magenta   #d33682
+set $violet    #6c71c4
+set $blue      #268bd2
+set $cyan      #2aa198
+set $green     #859900
+
 # default client colors
 # class                 border  backgr. text    indicator
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4
-# client.focused_inactive #333333 #5f676a #ffffff #484e50
-# client.unfocused        #333333 #222222 #888888 #292d2e
-# client.urgent           #2f343a #900000 #ffffff #900000
-
-# Solarized theme
-client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+client.focused              $orange $orange $base2 $yellow
+client.unfocused            #444444 #5f676a #aaaaaa #484e50
+client.focused_inactive     #333333 #222222 #888888 #292d2e
+client.urgent               #2f343a #900000 #ffffff #900000
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
 bar {
-        #status_command i3status
-        #status_command i3status --config ~/.i3/i3status.conf
-        status_command ~/bin/i3status.sh
-        position top
-        mode dock
+    #status_command i3status
+    #status_command i3status --config ~/.i3/i3status.conf
+    status_command ~/bin/i3status.sh
+    position top
+    mode dock
 
-        tray_output primary
-
+    tray_output primary
     font xft:Droid Sans Mono 8
-    colors {
-        # background #090020
-        background #002b32
-        statusline #eee8d5
 
+    colors {
         # solarized theme
+        background #002b36
+        statusline #839496
+        separator #aaaaaa
+        active_workspace #586e75 #002b36
+        urgent_workspace #b58900 #b58900 #002b36
         focused_workspace #cb4b16 #cb4b16 #eee8d5
-        active_workspace #cb4b16 #cb4b16 #eee8d5
-        inactive_workspace #b58900 #b58900 #eee8d5
+        inactive_workspace #93a1a1 #073642 #93a1a1
     }
 }
 
@@ -267,8 +281,6 @@ bar {
 #bindsym $mod+n exec i3-sensible-terminal -e newsbeuter
 #bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the poweroff shortcut. Do you really want to poweroff?' -b 'Yes, poweroff' 'systemctl poweroff'"
 #bindsym Print exec --no-startup-id "scrot '%F_%H%M%S_$wx$h.png' -e 'mv $f ~/screens/'"
-
-#exec --no-startup-id ~/bin/keychain2.sh
 
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 4
@@ -311,7 +323,7 @@ assign [class="^Pgadmin3$"] → $pg
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center, focus
-for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"] floating enable, focus
+for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe|Gcolor2"] floating enable, focus
 for_window [class="^Chromium$"] border 1pixel, focus
 for_window [class="^Thunderbird$"] border 1pixel, focus
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle, focus
@@ -332,5 +344,5 @@ bindsym $mod+Shift+m [class="Thunderbird"] focus
 #exec --no-startup-id /usr/bin/nm-applet
 ## exec --no-startup-id /usr/bin/wicd-gtk -t
 #exec --no-startup-id /usr/bin/redshift # on background
-#exec --no-startup-id /usr/bin/dunst    # simple notification daemon
+exec --no-startup-id /usr/bin/dunst    # simple notification daemon
 exec_always --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll" -variant ",winkeys"
