@@ -74,3 +74,5 @@ fi
 source /usr/share/git/completion/git-prompt.sh
 bash_prompt
 
+
+export MC_SKIN=${HOME}/.config/mc/solarized.ini
