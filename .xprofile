@@ -16,4 +16,11 @@ then
     ssh-add $id1 $id2 $id3 < /dev/null
 fi
 
+ssh -fN -D 12021 n1
+ssh -fN hg@bitbucket.org
+ssh -fN git@bitbucket.org
+
+export SOCKS_SERVER="127.0.0.1:12021"
+export SOCKS_VERSION=5
+
 # exec i3
