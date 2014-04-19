@@ -40,7 +40,7 @@ URxvt*color15:                 #fdf6e3
 
 URxvt*iso14755:         false
 URxvt.perl-ext:         default
-URxvt.perl-ext-common:  default,matcher,vtwheel,clipboard,keyboard-select,url-select
+URxvt.perl-ext-common:  default,matcher,clipboard,keyboard-select,url-select
 ! url select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/chromium
@@ -63,6 +63,8 @@ URxvt.keysym.M-C-v:             perl:clipboard:paste_escaped
 URxvt.clipboard.autocopy:       true
 
 URxvt*termName:                 rxvt-256color
+URxvt*urgentOnBell:             true
+URxvt*visualBell:               true
 
 ! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
