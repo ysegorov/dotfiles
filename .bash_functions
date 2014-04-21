@@ -101,4 +101,23 @@ bash_prompt() {
     # put it all together
     PS1="$ret\[$yellow\][$PS1_NAME] \[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \$(print_branch_name) \[$color_reset\]\$ "
 }
+
+assignProxy(){
+    PROXY_ENV="http_proxy ftp_proxy https_proxy all_proxy no_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY NO_PROXY ALL_PROXY"
+    for envar in $PROXY_ENV
+    do
+        export $envar=$1
+    done
+}
+
+clrProxy(){
+    assignProxy "" # This is what 'unset' does.
+}
+
+# setProxy(){
+#     user=YourUserName
+#     read -p "Password: " -s pass &&  echo -e " "
+#     proxy_value="http://$user:$pass@ProxyServerAddress:Port"
+#     assignProxy $proxy_value
+# }
 # vim: syn=sh

@@ -23,4 +23,6 @@ ssh -fN git@bitbucket.org
 export SOCKS_SERVER="127.0.0.1:12021"
 export SOCKS_VERSION=5
 
+export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain"
+
 # exec i3
