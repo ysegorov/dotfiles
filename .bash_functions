@@ -73,6 +73,22 @@ hgchanges()
 }
 alias hgch='hgchanges'
 
+hgbranches()
+{
+    local dirs=`find . -maxdepth 1 -type d`
+    for x in $dirs
+    do
+        if [ $x != '.' ]
+        then
+            if [ -d "$x/.hg" ]
+            then
+                echo $x && cd $x && hg branch && cd ..
+            fi
+        fi
+    done
+}
+alias hgbr='hgbranches'
+
 # function setting prompt string
 bash_prompt() {
     # some colors
