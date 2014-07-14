@@ -89,6 +89,22 @@ hgbranches()
 }
 alias hgbr='hgbranches'
 
+hgmergedefault()
+{
+    local dirs=`find . -maxdepth 1 -type d`
+    for x in $dirs
+    do
+        if [ $x != '.' ]
+        then
+            if [ -d "$x/.hg" ]
+            then
+                echo $x && cd $x && hg pull -u && hg merge default; cd ..
+            fi
+        fi
+    done
+}
+alias hgmd='hgmergedefault'
+
 # function setting prompt string
 bash_prompt() {
     # some colors
