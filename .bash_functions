@@ -57,7 +57,7 @@ print_branch_name() {
     fi
 }
 
-hgchanges()
+hgcmd()
 {
     local dirs=`find . -maxdepth 1 -type d`
     for x in $dirs
@@ -66,44 +66,31 @@ hgchanges()
         then
             if [ -d "$x/.hg" ]
             then
-                echo $x && cd $x && hg stat && cd ..
+                echo $x && cd $x
+                for cmd in `seq 1 $#`; do hg ${!cmd}; done
+                cd ..
             fi
         fi
     done
+}
+hgchanges()
+{
+    hgcmd stat
 }
 alias hgch='hgchanges'
 
 hgbranches()
 {
-    local dirs=`find . -maxdepth 1 -type d`
-    for x in $dirs
-    do
-        if [ $x != '.' ]
-        then
-            if [ -d "$x/.hg" ]
-            then
-                echo $x && cd $x && hg branch && cd ..
-            fi
-        fi
-    done
+    hgcmd branch
 }
 alias hgbr='hgbranches'
 
 hgmergedefault()
 {
-    local dirs=`find . -maxdepth 1 -type d`
-    for x in $dirs
-    do
-        if [ $x != '.' ]
-        then
-            if [ -d "$x/.hg" ]
-            then
-                echo $x && cd $x && hg pull -u && hg merge default; cd ..
-            fi
-        fi
-    done
+    hgcmd "pull -u" "merge default"
 }
 alias hgmd='hgmergedefault'
+
 
 # function setting prompt string
 bash_prompt() {
