@@ -85,6 +85,12 @@ hgbranches()
 }
 alias hgbr='hgbranches'
 
+hgpullupdate()
+{
+    hgcmd "pull -u"
+}
+alias hgpull='hgpullupdate'
+
 hgmergedefault()
 {
     hgcmd "pull -u" "merge default"
