@@ -2,6 +2,7 @@
 username = Egorov Yuri <ysegorov@gmail.com>
 #verbose = True
 ssh = ssh -C
+merge = vimdiff
 
 [hostfingerprints]
 bitbucket.org = 24:9c:45:8b:9c:aa:ba:55:4e:01:6d:58:ff:e4:28:7d:2a:14:ae:3b
@@ -16,7 +17,7 @@ git = True
 filemerge.executable = vim
 filemerge.args = -d $local $other
 filemerge.checkchanged = true
-filemerge.gui = true
+filemerge.gui = false
 
 [extensions]
 color =
