@@ -139,6 +139,14 @@ clrProxy(){
     assignProxy "" # This is what 'unset' does.
 }
 
+assignSocks(){
+    export SOCKS_SERVER=$1
+    export SOCKS_VERSION=$2
+}
+clrSocks(){
+    assignSocks "" ""
+}
+
 # setProxy(){
 #     user=YourUserName
 #     read -p "Password: " -s pass &&  echo -e " "
