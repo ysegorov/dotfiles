@@ -6,4 +6,5 @@ export WORKON_HOME=~/_venvs
 source /usr/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
+export FULL_CLONE_HOME=/home/yuri/_hg
 export EDITOR=vim
