@@ -3,7 +3,9 @@
 # ~/.xprofile
 #
 
-xrandr --output LVDS --primary
+xrandr --output eDP1 --primary
+
+sh ~/.fehbg &
 
 # if we have private ssh key(s), start ssh-agent and add the key(s)
 
@@ -16,9 +18,9 @@ then
     ssh-add $id1 $id2 $id3 < /dev/null
 fi
 
-ssh -fN -D 12021 n1
-ssh -fN hg@bitbucket.org
-ssh -fN git@bitbucket.org
+ssh -fN -D 12021 -o ControlMaster=no n3 &
+ssh -fN hg@bitbucket.org &
+ssh -fN git@bitbucket.org &
 
 export SOCKS_SERVER="127.0.0.1:12021"
 export SOCKS_VERSION=5

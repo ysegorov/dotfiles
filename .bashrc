@@ -77,3 +77,5 @@ bash_prompt
 
 export MC_SKIN=${HOME}/.config/mc/solarized.ini
 export NODE_PATH=${NODE_PATH}:/usr/lib/node_modules
+
+alias skype='xhost +local: && sudo -u skype /usr/bin/skype'
