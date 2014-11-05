@@ -23,7 +23,7 @@ set $img 4
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:Terminus 9
+font pango:Terminus, FontAwesome 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -45,7 +45,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Terminus-9'"
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Terminus-10'"
 
 # move container
 bindsym $mod+j move left
@@ -245,7 +245,7 @@ bar {
     mode dock
 
     tray_output primary
-    font xft:Droid Sans Mono 8
+    font xft:Droid Sans Mono 10
 
     colors {
         # solarized theme
@@ -284,11 +284,11 @@ bar {
 #bindsym Print exec --no-startup-id "scrot '%F_%H%M%S_$wx$h.png' -e 'mv $f ~/screens/'"
 
 # Custom hotkeys: use xev to learn the hotkey names
-bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 4
-bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 4
+bindsym $mod+F6 exec --no-startup-id /usr/bin/xbacklight -inc 4
+bindsym $mod+F5 exec --no-startup-id /usr/bin/xbacklight -dec 4
 bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/amixer set Master 3%+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/amixer set Master 3%- unmute
-bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer set Master toggle
+bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer -c 1 set Master toggle
 #bindsym XF86AudioNext exec /usr/bin/audacious --fwd
 #bindsym XF86AudioPrev exec /usr/bin/audacious --rew
 #bindsym XF86Play exec /usr/bin/audacious --play-pause
@@ -296,6 +296,14 @@ bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer set Master toggle
 #bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 #bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
 #bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
+
+# Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+# bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec --no-startup-id ~/bin/toggletouchpad.sh  # toggle touchpad
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -330,7 +338,11 @@ for_window [class="^Firefox$"] border 1pixel, focus
 for_window [class="^Thunderbird$"] border 1pixel, focus
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle, focus
 for_window [class="scratchpad"] move scratchpad
-for_window [class="^Pidgin$"] floating enable, focus mode_toggle, focus
+for_window [class="Pidgin"] floating enable, focus mode_toggle, focus
+for_window [class="^VirtualBox$"] floating enable
+for_window [class="^Skype$"] floating enable
+for_window [title="Skype"] floating enable
+for_window [title="(?i)Call with "] floating enable
 
 # focus
 bindsym $mod+Shift+b [class="Chromium"] focus
