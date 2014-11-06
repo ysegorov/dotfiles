@@ -15,8 +15,8 @@
 URxvt.intensityStyles: false
 
 
-URxvt.font:             xft:Terminus:size=10:antialias=false
-URxvt.boldFont:         xft:Terminus:size=10:antialias=false
+URxvt.font:             xft:Terminus:size=9:antialias=false
+URxvt.boldFont:         xft:Terminus:size=9:antialias=false
 URxvt.scrollBar:        false
 URxvt*saveLines:        65536
 URxvt*.transparent:     true

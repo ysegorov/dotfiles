@@ -2,9 +2,9 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export VIRTUALENVWRAPPER_VIRTUALENV=virtualenv2
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
-export WORKON_HOME=~/_venvs
+export WORKON_HOME=~/_chtd
 source /usr/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
-export FULL_CLONE_HOME=/home/egorov/_hg
+export FULL_CLONE_HOME=/home/chtd/_hg
 export EDITOR=vim

@@ -3,7 +3,7 @@
 # ~/.xprofile
 #
 
-xrandr --output eDP1 --primary
+xrandr --output LVDS1 --primary
 
 sh ~/.fehbg &
 

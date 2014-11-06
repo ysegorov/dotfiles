@@ -3,16 +3,11 @@
 
 # reset node path
 NODE_PATH="$_NODE_PATH"
-_NODE_PATH=
 
 # reset path
 PATH="$_PATH"
-_PATH=
 
 unalias cdsrc
 unalias n
 
 cd $_PWD
-
-# reset pwd
-_PWD=
