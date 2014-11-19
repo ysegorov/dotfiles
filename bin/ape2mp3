@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+cuesplit.sh .
+iconv -f cp1251 -t utf-8 <*.cue >src.cue
+cuetag.sh src.cue *.flac
+parallel -j4 ffmpeg -i {} -qscale:a 0 {.}.mp3 ::: *.flac
+rm *flac
+ls -l
