@@ -7,7 +7,7 @@ NODE_PATH="$VIRTUAL_ENV/node_modules:$NODE_PATH"
 
 # add executable node modules to path
 _PATH="$PATH"
-PATH="$VIRTUAL_ENV/node_modules/.bin:$VIRTUAL_ENV/_project/node_modules/.bin:$PATH"
+PATH="$VIRTUAL_ENV/node_modules/.bin:$VIRTUAL_ENV/_project/node_modules/.bin:$VIRTUAL_ENV/_app/node_modules/.bin:$PATH"
 
 # store path
 _PWD="$PWD"
