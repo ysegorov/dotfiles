@@ -87,4 +87,7 @@ alias pacc="pacman -Sc"    # '[c]lean cache'    - delete all not currently insta
 alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD file in current directory
 # }}}
 
+# postgres
+alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.datname), pg_size_pretty(pg_database_size(pg_database.datname)) FROM pg_database ORDER BY pg_database_size DESC;"'
+
 # vim: syn=sh
