@@ -22,6 +22,7 @@ fi
 ssh -fN -D 12021 -o ControlMaster=no n3 &
 ssh -fN hg@bitbucket.org &
 ssh -fN git@bitbucket.org &
+ssh -fN git@github.com &
 
 syndaemon -t -k -i 2 -d
 
