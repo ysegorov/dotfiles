@@ -90,4 +90,10 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 # postgres
 alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.datname), pg_size_pretty(pg_database_size(pg_database.datname)) FROM pg_database ORDER BY pg_database_size DESC;"'
 
+# skype
+# https://wiki.archlinux.org/index.php/Skype#Use_Skype_with_special_user
+alias skype='xhost +local: && sudo -u skype /usr/bin/skype'
+
+# ssh channels
+alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
 # vim: syn=sh

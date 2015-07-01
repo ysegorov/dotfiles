@@ -82,5 +82,3 @@ export MC_SKIN=${HOME}/.config/mc/solarized.ini
 export NODE_PATH=${HOME}/_npm/lib/node_modules:${NODE_PATH}:/usr/lib/node_modules
 
 export PATH=$PATH:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/_npm/bin
-
-alias skype='xhost +local: && sudo -u skype /usr/bin/skype'
