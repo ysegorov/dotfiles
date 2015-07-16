@@ -92,8 +92,14 @@ alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.
 
 # skype
 # https://wiki.archlinux.org/index.php/Skype#Use_Skype_with_special_user
-alias skype='xhost +local: && sudo -u skype /usr/bin/skype'
+# yaourt -S lib32-apulse
+alias skype='xhost +local: && sudo -u skype apulse32 /usr/bin/skype'
 
 # ssh channels
 alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
+
+# kanobu
+# alias kanobu='pon kanobu && sleep 5 && ip route add default dev ppp0'
+alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
+
 # vim: syn=sh
