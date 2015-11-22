@@ -10,4 +10,12 @@ export FULL_CLONE_HOME=/home/egorov/_hg
 export EDITOR=vim
 
 # python3 pyvenv setting
-export ENV_DIR=~/_venvs.py3
+export PY3_HOME=~/_py3
+[ ! -d ${PY3_HOME} ] && mkdir ${PY3_HOME}
+
+mkpy3() {
+    cd ${PY3_HOME} && pyvenv $1 && cd $1 && mkdir _app && py3 $1
+}
+py3() {
+    cd ${PY3_HOME} && cd $1 && . bin/activate && [ -d _app ] && cd _app
+}
