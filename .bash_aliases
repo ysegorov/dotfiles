@@ -102,4 +102,10 @@ alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ss
 # alias kanobu='pon kanobu && sleep 5 && ip route add default dev ppp0'
 alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
 
+# dotprom
+alias dpwifi='sudo netctl start dotpromwifi'
+alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
+alias dpmount='truecrypt -t -k "" --protect-hidden=no ~/dotprom.tc ~/_dotprom/'
+alias dpunmount='truecrypt -t -d'
+
 # vim: syn=sh
