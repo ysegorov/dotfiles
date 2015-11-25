@@ -18,4 +18,5 @@ mkpy3() {
 }
 py3() {
     cd ${PY3_HOME} && cd $1 && . bin/activate && [ -d _app ] && cd _app
+    export PATH=${VIRTUAL_ENV}/_app/node_modules/.bin:${PATH}
 }
