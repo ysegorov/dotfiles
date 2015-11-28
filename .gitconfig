@@ -30,6 +30,12 @@
   sm = submodule
   st = status
   vs = !gitx --all
+  # https://gist.github.com/piscisaureus/3342247
+  # https://gist.github.com/gnarf/5406589
+  # usage: git pr 4    ---> fetch pr/4 from origin and checkout pr/4 branch
+  # usage: git pr 4 upstream   ---> fetch pr/4 from upstream and checkout pr/4 branch
+  pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 [color]
   ui = true
   branch = auto
