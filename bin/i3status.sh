@@ -3,7 +3,7 @@
 i3status --config ~/.i3/i3status.conf | while :
 do
     read line
-    LG=`xkblayout-state print %s`
+    LG=`xkb-switch`
     if [ $LG == "us" ]
     then
         dat="[{ \"full_text\": \"LANG: $LG\", \"color\":\"#009E00\" },"
