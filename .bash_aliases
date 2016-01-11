@@ -98,6 +98,9 @@ alias skype='xhost +local: && sudo -u skype apulse32 /usr/bin/skype'
 # ssh channels
 alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
 
+# secrets generator
+alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
+
 # kanobu
 # alias kanobu='pon kanobu && sleep 5 && ip route add default dev ppp0'
 alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
