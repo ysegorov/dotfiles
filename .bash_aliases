@@ -108,7 +108,9 @@ alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chrom
 # dotprom
 alias dpwifi='sudo netctl start dotpromwifi'
 alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
-alias dpmount='truecrypt -t -k "" --protect-hidden=no ~/dotprom.tc ~/_dotprom/'
-alias dpunmount='truecrypt -t -d'
+alias dpopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.dotprom/"'
+
+# backup
+alias backup='rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
 
 # vim: syn=sh
