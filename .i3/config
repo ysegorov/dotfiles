@@ -358,5 +358,5 @@ bindsym $mod+Shift+m [class="Thunderbird"] focus
 #exec --no-startup-id /usr/bin/nm-applet
 ## exec --no-startup-id /usr/bin/wicd-gtk -t
 #exec --no-startup-id /usr/bin/redshift # on background
-exec --no-startup-id /usr/bin/dunst    # simple notification daemon
+#exec --no-startup-id /usr/bin/dunst    # simple notification daemon
 exec_always --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll" -variant ",winkeys"
