@@ -1,0 +1,22 @@
+-- Official docs: http://www.postgresql.org/docs/9.3/static/app-psql.html
+-- Unofficial docs: http://robots.thoughtbot.com/improving-the-command-line-postgres-experience
+-- Source: https://github.com/thoughtbot/dotfiles/blob/master/psqlrc
+-- Source: https://simply.name/yet-another-psql-color-prompt.html
+
+\set QUIET 1
+
+\set QUIET 1
+\set ON_ERROR_ROLLBACK interactive
+\set VERBOSITY verbose
+\x auto
+\set PROMPT1 '%[%033[38;5;27m%]%`hostname -s`%[%033[38;5;102m%]/%/%R%[%033[0m%] %# '
+\set PROMPT2 ' %R > '
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\pset border 2
+\pset null (null)
+\pset pager always
+\timing
+
+\unset QUIET
