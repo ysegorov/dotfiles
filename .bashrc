@@ -81,4 +81,4 @@ export PYTHONPATH=./.pip:$PYTHONPATH
 #export MC_SKIN=${HOME}/.config/mc/solarized.ini
 export NODE_PATH=${HOME}/_npm/lib/node_modules:${NODE_PATH}:/usr/lib/node_modules
 
-export PATH=$HOME/mongodb/bin:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/.gem/ruby/2.2.0/bin:$HOME/_npm/bin:$PATH
+export PATH=$HOME/mongodb/bin:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/.gem/ruby/2.2.0/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/_npm/bin:$PATH
