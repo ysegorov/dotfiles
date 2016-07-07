@@ -117,8 +117,9 @@ alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_mov
 
 # dev
 _dev() {
-    local p=${HOME}/_dev
-    cd $p/$1
+    local p=${HOME}/_dev/$1
+    [ ! -d $p ] && mkdir $p
+    cd $p
 }
 _dev_complete()
 {
