@@ -103,15 +103,36 @@ alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
 
 # kanobu
 # alias kanobu='pon kanobu && sleep 5 && ip route add default dev ppp0'
-alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
+#alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
 alias kopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.kanobu/"'
+alias kvpn='cd ${HOME}/_work/kanobu/ovpn && ./vpn'
 
 # dotprom
 alias dpwifi='sudo netctl start dotpromwifi'
-alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
+#alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
 alias dpopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.dotprom/"'
 
 # backup
-alias backup='rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
+alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
+
+# dev
+_dev() {
+    local p=${HOME}/_dev
+    cd $p/$1
+}
+_dev_complete()
+{
+    local cur prev opts
+    local p=${HOME}/_dev
+    [ ! -d $p ] && `which mkdir` $p
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=`cd $p && find . -maxdepth 1 -type d | sed 's|[\./]||g'`
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+alias dev=_dev
+complete -F _dev_complete dev
 
 # vim: syn=sh
