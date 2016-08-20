@@ -96,7 +96,8 @@ alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.
 alias skype='xhost +local: && sudo -u skype apulse32 /usr/bin/skype'
 
 # ssh channels
-alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
+#alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
+alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com &'
 
 # secrets generator
 alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
@@ -115,11 +116,20 @@ alias dpopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.confi
 # backup
 alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
 
+# virtualenv
+alias cdsrc='cd ${VIRTUAL_ENV}/src'
+alias cdsitepackages='cd ${VIRTUAL_ENV}/lib/python*/site-packages/'
+alias cdproject='cd ${VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; then cd ..; fi'
+
 # dev
 _dev() {
     local p=${HOME}/_dev/$1
     [ ! -d $p ] && mkdir $p
     cd $p
+    inve
+    # [ -f ./bin/activate ] && source ./bin/activate # || echo "no venv in dir, skipping"
+    # [ -d ./_app ] && cd _app  # || echo "workdir is $p"
+    return 0
 }
 _dev_complete()
 {
@@ -129,7 +139,7 @@ _dev_complete()
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts=`cd $p && find . -maxdepth 1 -type d | sed 's|[\./]||g'`
+    opts=`cd $p && find -L . -maxdepth 1 -type d | sed 's|[\./]||g'`
 
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
 }

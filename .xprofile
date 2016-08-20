@@ -20,8 +20,8 @@ then
 fi
 
 ssh -fN -D 12021 -o ControlMaster=no n3 &
-ssh -fN hg@bitbucket.org &
-ssh -fN git@bitbucket.org &
+#ssh -fN hg@bitbucket.org &
+#ssh -fN git@bitbucket.org &
 ssh -fN git@github.com &
 
 syndaemon -t -k -i 2 -d
@@ -29,6 +29,6 @@ syndaemon -t -k -i 2 -d
 export SOCKS_SERVER="127.0.0.1:12021"
 export SOCKS_VERSION=5
 
-export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.1.0/24,inetcom.ru,google.com,google.ru,google.co.uk,.local"
+export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.1.0/24,inetcom.ru,google.com,google.ru,google.co.uk,.local,.coursera.org"
 
 # exec i3

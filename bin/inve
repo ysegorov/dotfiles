@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# tuned idea from: https://gist.github.com/datagrok/2199506
+#
+# inve
+#
+# For use with Ian Bicking's virtualenv tool. Attempts to find the root of
+# a virtual environment and activate it in subshell.
+
+# First, locate the root of the current virtualenv
+cwd=$PWD
+while [ "$PWD" != "/" ]; do
+    # Stop here if this the root of a virtualenv
+    # will look for virtualenv in `current dir` or in `env` subdirectory
+    if [ \
+        -x bin/python \
+        -a -e lib/python*/site.py \
+        -a -e include/python*/Python.h ]
+    then
+        export VIRTUAL_ENV="$PWD"
+        break
+    elif [ \
+        -x env/bin/python \
+        -a -e env/lib/python*/site.py \
+        -a -e env/include/python*/Python.h ]
+    then
+        export VIRTUAL_ENV="$PWD/env"
+        break
+    fi
+    cd ..
+done
+if [ "$PWD" = "/" ]; then
+    export PATH="$cwd/node_modules/.bin:$PATH"
+    echo "No virtual environment found, skipping activate." >&2
+    cd $cwd
+else
+    # Activate
+    export PATH="$VIRTUAL_ENV/bin:$cwd/node_modules/.bin:$PATH"
+    unset PYTHONHOME
+    echo "Virtual environment found in ${VIRTUAL_ENV}, activated." >&2
+fi
+exec "$SHELL"

@@ -49,12 +49,12 @@ print_branch_name() {
         parse_svn_branch
     fi
     # Recurse upwards
-    if [ "$curdir" == '/' ]
-    then
-        return 1
-    else
-        print_branch_name `dirname "$curdir"`
-    fi
+    # if [ "$curdir" == '/' ]
+    # then
+    #     return 1
+    # else
+    #     print_branch_name `dirname "$curdir"`
+    # fi
 }
 
 hgcmd()
@@ -98,6 +98,22 @@ hgmergedefault()
 alias hgmd='hgmergedefault'
 
 
+function venv_ps1 {
+    # For any of these bits of context that exist, display them and append
+    # a space.
+    # echo "(aaa)"
+    local v=`basename "$VIRTUAL_ENV"`
+    if [ "$v" = "env" ]
+    then
+        v=`dirname "$VIRTUAL_ENV"`
+        v=`basename "$v"`
+    fi
+    if [ -n "$v" ]
+    then
+        echo -n "(${v:+$v}) "
+    fi
+}
+
 # function setting prompt string
 bash_prompt() {
     # some colors
@@ -124,7 +140,7 @@ bash_prompt() {
     GIT_PS1_SHOWUPSTREAM="auto"
 
     # put it all together
-    PS1="$ret\[$yellow\][$PS1_NAME] \[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \$(print_branch_name) \[$color_reset\]\$ "
+    PS1="$ret$(venv_ps1)\[$yellow\][$PS1_NAME] \[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \$(print_branch_name) \[$color_reset\]\$ "
 }
 
 assignProxy(){

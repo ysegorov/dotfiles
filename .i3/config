@@ -323,8 +323,8 @@ hide_edge_borders vertical
 bindsym $mod+z workspace back_and_forth
 
 # assign: use xorg-xprop to learn the class string
-assign [class="^Chromium$"] → $web
-assign [class="^Firefox$"] → $web
+#assign [class="^Chromium$"] → $web
+#assign [class="^Firefox$"] → $web
 #assign [class="^Midori$"] → $web
 #assign [class="^Thunderbird$"] → $web
 #assign [class="^Pgadmin3$"] → $pg
@@ -334,7 +334,7 @@ assign [class="^Firefox$"] → $web
 for_window [window_role="pop-up"] floating enable, move absolute center, focus
 for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe|Gcolor2|smplayer"] floating enable, focus
 #for_window [class="^Chromium$"] border 1pixel, focus
-for_window [class="^Firefox$"] border 1pixel, focus
+#for_window [class="^Firefox$"] border 1pixel, focus
 #for_window [class="^Thunderbird$"] border 1pixel, focus
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle, focus
 for_window [class="scratchpad"] move scratchpad
