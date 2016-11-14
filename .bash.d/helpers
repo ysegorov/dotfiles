@@ -1,0 +1,8 @@
+
+# Find file by name pattern
+function ff() { find . -type f -iname '*'$*'*' -ls ; }
+# Find file by pattern in $1 and execute $2 on it
+function fe() { find . -type f -iname '*'$1'*' -exec "${2:-file}" {} \;  ; }
+function fs() { find . -type f -iname "$1" -exec grep -i -n -H -T --color=auto -C 2 -e "$2" {} \; ; }
+
+# vim: ft=sh:

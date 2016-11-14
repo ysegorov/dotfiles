@@ -1,0 +1,46 @@
+
+export PATH=$HOME/bin:$PATH
+export EDITOR=vim
+
+# secrets generator
+alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
+# yaourt -S sharutils
+alias mkpass='dd if=/dev/urandom count=1 2> /dev/null | uuencode -m - | sed -ne 2p | cut -c-40'
+
+# backup
+alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
+
+# virtualenv
+alias cdsrc='cd ${VIRTUAL_ENV}/src'
+alias cdsitepackages='cd ${VIRTUAL_ENV}/lib/python*/site-packages/'
+alias cdproject='cd ${VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; then cd ..; fi'
+
+# git projects
+alias cdwt='cd ~/_git/wt/'
+
+# dev
+_dev() {
+    local p=${HOME}/_dev/$1
+    [ ! -d $p ] && mkdir $p
+    cd $p
+    inve
+    # [ -f ./bin/activate ] && source ./bin/activate # || echo "no venv in dir, skipping"
+    # [ -d ./_app ] && cd _app  # || echo "workdir is $p"
+    return 0
+}
+_dev_complete()
+{
+    local cur prev opts
+    local p=${HOME}/_dev
+    [ ! -d $p ] && `which mkdir` $p
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=`cd $p && find -L . -maxdepth 1 -type d | sed 's|[\./]||g'`
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+alias dev=_dev
+complete -F _dev_complete dev
+
+# vim: ft=sh:

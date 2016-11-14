@@ -1,0 +1,90 @@
+
+# name to be used in PS1 prompt
+PS1_NAME="local"
+
+function venv_ps1 {
+    # For any of these bits of context that exist, display them and append
+    # a space.
+    # echo "(aaa)"
+    local v=`basename "$VIRTUAL_ENV"`
+    if [ "$v" = "env" ]
+    then
+        v=`dirname "$VIRTUAL_ENV"`
+        v=`basename "$v"`
+    fi
+    if [ -n "$v" ]
+    then
+        echo -n "(${v:+$v}) "
+    fi
+}
+
+print_branch_name() {
+    if [ -z "$1" ]
+    then
+        curdir=`pwd`
+    else
+        curdir=$1
+    fi
+    if [ -d "$curdir/.hg" ]
+    then
+        echo -n "hg:"
+        if [ -f  "$curdir/.hg/branch" ]
+        then
+            cat "$curdir/.hg/branch"
+        else
+            echo "default"
+        fi
+        return 0
+    elif [ -d "$curdir/.git" ]
+    then
+        echo -n "git:$(__git_ps1 %s)"
+        # git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+        return 0
+    elif [ -d "$curdir/.svn" ]
+    then
+        echo -n "svn:"
+        parse_svn_branch
+        return 0
+    fi
+    # Recurse upwards if nothing found in current dir
+    if [ "$curdir" == '/' ]
+    then
+        return 1
+    else
+        print_branch_name `dirname "$curdir"`
+    fi
+}
+
+# function setting prompt string
+bash_prompt() {
+    # some colors
+    local color_reset="\033[00m"
+    local red="\033[00;31m"
+    local green="\033[00;32m"
+    local yellow="\033[00;33m"
+    local blue="\033[00;34m"
+    local magenta="\033[00;35m"
+    local neutro="\033[01;32m"
+
+    # red for root, green for others
+    local host_color=$(if [[ $UID == 0 ]]; then echo "$red"; else echo "$neutro"; fi)
+
+    # colorized return value of last command
+    local ret="\$(if [[ \$? != 0 ]]; then echo \"\[$red\][!] \"; fi)"
+
+    # blue for writable directories, yellow for non-writable directories
+    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$blue\]\"; else echo \"\[$yellow\]\"; fi)\w"
+
+    # configuration for __git_ps1 function
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+
+    # put it all together
+    PS1="$ret$(venv_ps1)\[$yellow\][$PS1_NAME] \[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \$(print_branch_name) \[$color_reset\]\$ "
+}
+
+source /usr/share/git/completion/git-prompt.sh
+bash_prompt
+
+# vim: ft=sh:

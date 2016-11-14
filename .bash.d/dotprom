@@ -1,0 +1,8 @@
+
+# dotprom
+alias dpwifi='sudo netctl start dotpromwifi'
+#alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
+alias dpopera='opera-developer --user-data-dir="${HOME}/.config/opera.at.dotprom/"'
+#alias dpopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.dotprom/"'
+
+# vim: ft=sh:

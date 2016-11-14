@@ -14,9 +14,6 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-# name to be used in PS1 prompt
-PS1_NAME="local"
-
 
 # bash options ------------------------------------
 #set -o vi                   # Vi mode
@@ -55,30 +52,14 @@ case ${TERM} in
         ;;
 esac
 
-if type -P dircolors >/dev/null ; then
-    if [[ -f ~/.dircolors ]]; then
-        eval $(dircolors -b ~/.dircolors)
-    elif [[ -f ~/.dir_colors ]] ; then
-        eval $(dircolors -b ~/.dir_colors)
-    elif [[ -f /etc/DIR_COLORS ]] ; then
-        eval $(dircolors -b /etc/DIR_COLORS)
-    fi
-fi
 
 ## source useful files
 [[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
-[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
-[[ -f ~/.bash_functions ]] && source ~/.bash_functions
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
-source /usr/share/git/completion/git-prompt.sh
-bash_prompt
+if [ -d ${HOME}/.bash.d ]; then
+    for i in ${HOME}/.bash.d/*; do
+        [ -f "${i}" ] && source "${i}"
+    done
+fi
 
-
-# http://blog.zoomeranalytics.com/pip-install-t/
-export PYTHONPATH=./.pip:$PYTHONPATH
-
-#export MC_SKIN=${HOME}/.config/mc/solarized.ini
-export NODE_PATH=${HOME}/_npm/lib/node_modules:${NODE_PATH}:/usr/lib/node_modules
-
-export PATH=$HOME/mongodb/bin:$HOME/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/_npm/bin:$PATH

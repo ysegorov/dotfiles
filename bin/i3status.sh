@@ -6,9 +6,9 @@ do
     LG=`xkb-switch`
     if [ $LG == "us" ]
     then
-        dat="[{ \"full_text\": \"LANG: $LG\", \"color\":\"#009E00\" },"
+        dat="[{ \"full_text\": \" $LG\", \"color\": \"#b8bb26\" },"
     else
-        dat="[{ \"full_text\": \"LANG: $LG\", \"color\":\"#C60101\" },"
+        dat="[{ \"full_text\": \" $LG\", \"color\": \"#83a598\" },"
     fi
     echo "${line/[/$dat}" || exit 1
 done

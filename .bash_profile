@@ -3,4 +3,3 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ -f ~/.venv ]] && . ~/.venv

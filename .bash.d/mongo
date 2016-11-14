@@ -1,0 +1,4 @@
+
+export PATH=$HOME/mongodb/bin:$PATH
+
+# vim: ft=sh:

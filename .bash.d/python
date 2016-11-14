@@ -1,0 +1,5 @@
+
+# http://blog.zoomeranalytics.com/pip-install-t/
+export PYTHONPATH=./.pip:$PYTHONPATH
+
+# vim: ft=sh:
