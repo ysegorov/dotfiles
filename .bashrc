@@ -56,6 +56,7 @@ esac
 ## source useful files
 [[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
+[[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 
 if [ -d ${HOME}/.bash.d ]; then
     for i in ${HOME}/.bash.d/*; do
