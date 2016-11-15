@@ -3,4 +3,5 @@
 # yaourt -S opera-developer chromium-pepper-flash-dev
 
 # opera-developer --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so --ppapi-flash-version=14.0.0.125 --proxy-server=socks5://127.0.0.1:12021
-opera-developer
+# opera-developer
+/usr/bin/opera
