@@ -153,7 +153,7 @@ bindsym $mod+r mode "resize"
 
 set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+q) shutdown
 mode "$mode_system" {
-        set $i3lock i3lock -c 111111 -d
+        set $i3lock i3lock -c 111111 -d -i $HOME/lock.png
 
         bindsym l exec --no-startup-id $i3lock, mode "default"
         bindsym e exec --no-startup-id ~/bin/i3exit.sh
@@ -248,4 +248,4 @@ for_window [title="(?i)Call with "] floating enable
 #exec --no-startup-id /usr/bin/dunst    # simple notification daemon
 exec_always --no-startup-id feh --bg-fill /etc/lightdm/bg2.jpg
 exec_always --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll" -variant ",winkeys"
-exec --no-startup-id compton -b --config $HOME/.config/compton/config
+#exec --no-startup-id compton -b --config $HOME/.config/compton/config
