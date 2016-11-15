@@ -57,14 +57,17 @@ print_branch_name() {
 
 # function setting prompt string
 bash_prompt() {
-    # some colors
-    local color_reset="\033[00m"
-    local red="\033[00;31m"
-    local green="\033[00;32m"
-    local yellow="\033[00;33m"
-    local blue="\033[00;34m"
-    local magenta="\033[00;35m"
-    local neutro="\033[01;32m"
+    # gruvbox colors for terminal supporting 24 bit colors
+    local color_reset="\033[0m"
+    local prefix="\033[38;2;"
+    local red="${prefix}251;73;52m"
+    local green="${prefix}184;187;38m"
+    local aqua="${prefix}142;192;124m"
+    local yellow="${prefix}250;189;47m"
+    local blue="${prefix}131;165;152m"
+    local magenta="${prefix}211;134;155m"
+    local orange="${prefix}254;128;25m"
+    local neutro="${prefix}235;219;178m"
 
     # red for root, green for others
     local host_color=$(if [[ $UID == 0 ]]; then echo "$red"; else echo "$neutro"; fi)
@@ -73,7 +76,7 @@ bash_prompt() {
     local ret="\$(if [[ \$? != 0 ]]; then echo \"\[$red\][!] \"; fi)"
 
     # blue for writable directories, yellow for non-writable directories
-    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$blue\]\"; else echo \"\[$yellow\]\"; fi)\w"
+    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$aqua\]\"; else echo \"\[$orange\]\"; fi)\w"
 
     # configuration for __git_ps1 function
     GIT_PS1_SHOWDIRTYSTATE=1
