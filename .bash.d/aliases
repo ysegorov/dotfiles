@@ -72,4 +72,8 @@ alias moew='more'
 alias kk='ll'
 # }}}
 
+alias ssh='TERM=xterm-256color ssh'
+
+alias systemctl='sudo systemctl'
+
 # vim: ft=sh:

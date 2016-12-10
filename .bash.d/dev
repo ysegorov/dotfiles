@@ -13,7 +13,8 @@ alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_mov
 # virtualenv
 alias cdsrc='cd ${VIRTUAL_ENV}/src'
 alias cdsitepackages='cd ${VIRTUAL_ENV}/lib/python*/site-packages/'
-alias cdproject='cd ${VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; then cd ..; fi'
+#alias cdproject='cd ${VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; then cd ..; fi'
+alias cdproject='cd ${DEV_ROOT:-VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; then cd ..; fi'
 
 # git projects
 alias cdwt='cd ~/_git/wt/'

@@ -9,6 +9,8 @@
 
 # First, locate the root of the current virtualenv
 cwd=$PWD
+export DEV_ROOT=$cwd
+
 while [ "$PWD" != "/" ]; do
     # Stop here if this the root of a virtualenv
     # will look for virtualenv in `current dir` or in `env` subdirectory
