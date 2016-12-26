@@ -171,7 +171,8 @@ bindsym $mod+q mode "$mode_system"
 
 
 bar {
-    status_command ~/bin/i3status.sh
+    # status_command ~/bin/i3status.sh
+    status_command ~/bin/i3status.py
     position top
     mode dock
 
