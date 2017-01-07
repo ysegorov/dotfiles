@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+## Set the old version that we want to upgrade from.
+export FROM_VERSION=9.5
+export TO_VERSION=9.6
+export SRC=/var/lib/postgres
+export DATA=${SRC}/data
+export DST=${SRC}/${TO_VERSION}/data
+
+su - postgres -c "mkdir -p ${DST} && chmod 700 ${DST} ${DST}/.."
+yaourt -S --needed postgresql-old-upgrade
+[[ -L ${DATA} ]] && su - postgres -c "rm -i ${DATA}"
+# [[ -d ${DATA} ]] && su - postgres -c "mv ${DATA} /var/lib/postgres/${FROM_VERSION}/data"
+su - postgres -c "initdb --locale $LANG -E UTF8 -D ${DST}"
+su - postgres -c "ln -s ${DST} ${DATA}"
+su - postgres -c "pg_upgrade -b /opt/pgsql-${FROM_VERSION}/bin/ -B /usr/bin/ -d /var/lib/postgres/${FROM_VERSION}/data -D ${DATA}"
