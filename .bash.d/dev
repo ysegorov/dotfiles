@@ -20,19 +20,18 @@ alias cdproject='cd ${DEV_ROOT:-VIRTUAL_ENV}; if [ `basename ${PWD}` = "env" ]; 
 alias cdwt='cd ~/_git/wt/'
 
 # dev
+DEV=${HOME}/_dev
 _dev() {
-    local p=${HOME}/_dev/$1
+    local p=${DEV}/$1
     [ ! -d $p ] && mkdir $p
     cd $p
     inve
-    # [ -f ./bin/activate ] && source ./bin/activate # || echo "no venv in dir, skipping"
-    # [ -d ./_app ] && cd _app  # || echo "workdir is $p"
     return 0
 }
 _dev_complete()
 {
     local cur prev opts
-    local p=${HOME}/_dev
+    local p=${DEV}
     [ ! -d $p ] && `which mkdir` $p
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
