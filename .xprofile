@@ -29,6 +29,6 @@ syndaemon -t -k -i 2 -d
 export SOCKS_SERVER="127.0.0.1:12021"
 export SOCKS_VERSION=5
 
-export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.1.0/24,inetcom.ru,google.com,google.ru,google.co.uk,.local,.kanobu.ru,.coursera.org,.dotcomltd.ru"
+export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.1.0/16,inetcom.ru,google.com,google.ru,google.co.uk,.local,.kanobu.ru,.coursera.org,.dotcomltd.ru"
 
 # exec i3
