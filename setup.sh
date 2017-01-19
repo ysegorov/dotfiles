@@ -4,7 +4,7 @@ cwd=`pwd`
 
 ln -sfi ${cwd}/bin ${HOME}/
 ln -sfi ${cwd}/.bash.d ${HOME}/
-ln -sfiv ${cwd}/.i3 ${cwd}/.xprofile ${cwd}/.Xresources ${cwd}/.inputrc ${cwd}/.bashrc ${cwd}/.bash_profile ${cwd}/.pylintrc ${cwd}/.hgrc ${cwd}/.dircolors ${cwd}/.gitconfig ${cwd}/.npmrc ${cwd}/.ackrc ${cwd}/.psqlrc ${HOME}
+ln -sfiv ${cwd}/.i3 ${cwd}/.xprofile ${cwd}/.Xresources ${cwd}/.inputrc ${cwd}/.bashrc ${cwd}/.bash_profile ${cwd}/.pylintrc ${cwd}/.hgrc ${cwd}/.dircolors ${cwd}/.gitconfig ${cwd}/.ackrc ${cwd}/.psqlrc ${HOME}
 
 mkdir -p ${HOME}/.config/
 ln -sfiv ${cwd}/.config/dunst ${HOME}/.config/
@@ -15,3 +15,4 @@ ln -sfiv ${cwd}/.config/compton ${HOME}/.config/
 #ln -sfiv ${cwd}/.config/mc/solarized.ini ${HOME}/.config/mc/
 
 mkdir -p ${HOME}/_npm
+echo "prefix=${HOME}/_npm" >>${HOME}/.npmrc

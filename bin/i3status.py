@@ -53,12 +53,13 @@ def wireless():
 
 
 def storage():
-    info = run('df -h -P -l / |grep -v Size |awk \'{print $4, $5}\'')
+    info = run('/usr/bin/df -P -l / |grep -v Avail |awk \'{print $4, $5}\'')
     size, percent = info.split(' ', 1)
     percent = int(percent[:-1])
-    color = None if percent < 90 else percent > 98 and ALARM or WARN
+    size = '%.1f' % (float(size) / 1024 / 1024)
+    color = None if percent < 95 else percent > 98 and ALARM or WARN
     symb = '\uf0a0'
-    return block('storage', '%s %s' % (symb, size), color)
+    return block('storage', '%s %sGb' % (symb, size), color)
 
 
 def volume():
