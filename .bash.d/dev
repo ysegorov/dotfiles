@@ -8,7 +8,7 @@ alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
 alias mkpass='dd if=/dev/urandom count=1 2> /dev/null | uuencode -m - | sed -ne 2p | cut -c-40'
 
 # backup
-alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads -e ssh . nas:/mnt/rd3/_archiv/asuspro'
+alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads --exclude=.cache --exclude=_vm --exclude=.npm -e ssh . pi:/mnt/rd2/_archiv/asuspro'
 
 # virtualenv
 alias cdsrc='cd ${VIRTUAL_ENV}/src'
