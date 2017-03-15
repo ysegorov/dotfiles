@@ -1,9 +1,0 @@
-
-# kanobu
-# alias kanobu='pon kanobu && sleep 5 && ip route add default dev ppp0'
-#alias kranobu='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.kanobu/"'
-alias kopera='opera-developer --user-data-dir="${HOME}/.config/opera.at.kanobu/"'
-#alias kopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.kanobu/"'
-alias kvpn='cd ${HOME}/_work/kanobu/ovpn && ./vpn'
-
-# vim: ft=sh:

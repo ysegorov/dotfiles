@@ -1,0 +1,3 @@
+
+# tolsha
+alias tvpn="cd $HOME/_work/tolsha/yuri && sudo openvpn client.conf"
