@@ -24,7 +24,12 @@ ssh -fN -D 12021 -o ControlMaster=no n3 &
 #ssh -fN git@bitbucket.org &
 ssh -fN git@github.com &
 
-syndaemon -t -k -i 2 -d
+# syndaemon -t -k -i 2 -d
+
+# enable two finger scroll on touchpad for libinput
+xinput set-prop 14 289 0 1 0
+# disable horizontal scrolling
+xinput set-prop 14 294 0
 
 export SOCKS_SERVER="127.0.0.1:12021"
 export SOCKS_VERSION=5
