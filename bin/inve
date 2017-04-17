@@ -41,4 +41,7 @@ else
     unset PYTHONHOME
     echo "Virtual environment found in ${VIRTUAL_ENV}, activated." >&2
 fi
+
+[ -f $cwd/.activate ] && source $cwd/.activate
+
 exec "$SHELL"
