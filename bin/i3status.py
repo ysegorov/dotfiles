@@ -63,8 +63,18 @@ def storage():
 
 
 def volume():
-    info = run('amixer -D default get Master |grep dB |awk \'{print $4, $6}\'')
-    percent, state = info.replace('[', '').replace(']', '').split(' ')
+    # without pulseaudio installed
+    # info = run('amixer -D default get Master '
+    #            '|grep dB |awk \'{print $4, $6}\'')
+    # percent, state = info.replace('[', '').replace(']', '').split(' ')
+
+    # with pulseaudio installed
+    info = run('amixer -c 1 -M -D pulse get Master')
+    info = info.split('\n')[-1]  # last line
+    info = info.split(' ')
+    percent, state = info[-2][1:-1], info[-1][1:-1]
+
+    # common
     value = int(percent[:-1])
     color = state != 'on' and WARN or None
     symb = (state != 'on' or value < 10) and '\uf026' \
