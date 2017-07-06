@@ -72,7 +72,7 @@ bindsym $mod+BackSpace kill
 
 # dmenu
 # bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Terminus-11'"
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Roboto-10'"
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'PT Sans-11'"
 
 # move container
 bindsym $mod+Left focus left
