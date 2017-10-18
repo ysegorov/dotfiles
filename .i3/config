@@ -241,6 +241,7 @@ for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe|G
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle, focus
 for_window [class="scratchpad"] move scratchpad
 for_window [class="Pidgin"] floating enable, focus mode_toggle, focus
+for_window [class="Inkview"] floating enable, focus mode_toggle, focus
 for_window [title="(?i)Call with "] floating enable
 
 #exec --no-startup-id xrandr --output LVDS --primary
