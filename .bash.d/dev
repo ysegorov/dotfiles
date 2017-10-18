@@ -7,9 +7,6 @@ alias mksecret='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 128 | head -n 1'
 # yaourt -S sharutils
 alias mkpass='dd if=/dev/urandom count=1 2> /dev/null | uuencode -m - | sed -ne 2p | cut -c-40'
 
-# backup
-alias backup='cd ${HOME} && rsync -a -v --delete --exclude=_music --exclude=_movies --exclude=Downloads --exclude=.cache --exclude=_vm --exclude=.npm -e ssh . pi:/mnt/rd2/_archiv/asuspro'
-
 # virtualenv
 alias cdsrc='cd ${VIRTUAL_ENV}/src'
 alias cdsitepackages='cd ${VIRTUAL_ENV}/lib/python*/site-packages/'
