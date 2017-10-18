@@ -27,13 +27,15 @@ ssh -fN git@github.com &
 # syndaemon -t -k -i 2 -d
 
 # enable two finger scroll on touchpad for libinput
-xinput set-prop 14 289 0 1 0
+# xinput set-prop 14 289 0 1 0
 # disable horizontal scrolling
-xinput set-prop 14 294 0
+# xinput set-prop 14 294 0
+# disable disable while typing
+# xinput set-prop 14 291 0
 
-export SOCKS_SERVER="127.0.0.1:12021"
-export SOCKS_VERSION=5
+# export SOCKS_SERVER="127.0.0.1:12021"
+# export SOCKS_VERSION=5
 
-export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.1.0/16,inetcom.ru,google.com,google.ru,google.co.uk,.local,.kanobu.ru,.coursera.org,.dotcomltd.ru"
+export no_proxy="localhost,127.0.0.1,local.host,localhost.localdomain,192.168.0.105,inetcom.ru,google.com,google.ru,google.co.uk,.local,.docs,.dotcomltd.ru"
 
 # exec i3
