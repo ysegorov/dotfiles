@@ -16,15 +16,13 @@ while [ "$PWD" != "/" ]; do
     # will look for virtualenv in `current dir` or in `env` subdirectory
     if [ \
         -x bin/python \
-        -a -e lib/python*/site.py \
-        -a -e include/python*/Python.h ]
+        -a -d lib/python*/site-packages/ ]
     then
         export VIRTUAL_ENV="$PWD"
         break
     elif [ \
         -x env/bin/python \
-        -a -e env/lib/python*/site.py \
-        -a -e env/include/python*/Python.h ]
+        -a -d env/lib/python*/site-packages/ ]
     then
         export VIRTUAL_ENV="$PWD/env"
         break
