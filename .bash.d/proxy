@@ -1,8 +1,4 @@
 
-# ssh channels
-#alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com & ssh -fN git@bitbucket.org & ssh -fN hg@bitbucket.org &'
-alias channels='pkill -f "ssh -fN"; ssh -fN -D 12021 -o ControlMaster=no n3 & ssh -fN git@github.com &'
-
 assignProxy(){
     PROXY_ENV="http_proxy ftp_proxy https_proxy all_proxy no_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY NO_PROXY ALL_PROXY"
     for envar in $PROXY_ENV
