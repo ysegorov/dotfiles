@@ -9,8 +9,6 @@ xrandr --output eDP1 --primary
 
 # if we have private ssh key(s), start ssh-agent and add the key(s)
 
-#id1=$HOME/.ssh/id_chtd_rsa
-#id2=$HOME/.ssh/id_dsa
 id3=$HOME/.ssh/id_rsa
 id4=$HOME/.ssh/id_github_rsa
 if [ -x /usr/bin/ssh-agent ] && [ -f $id3 -o -f $id4 ];
@@ -19,10 +17,6 @@ then
     ssh-add $id3 $id4 < /dev/null
 fi
 
-ssh -fN -D 12021 -o ControlMaster=no n3 &
-#ssh -fN hg@bitbucket.org &
-#ssh -fN git@bitbucket.org &
-ssh -fN git@github.com &
 
 # syndaemon -t -k -i 2 -d
 
@@ -40,5 +34,7 @@ ssh -fN git@github.com &
 
 xset dpms 0 0 600
 xset s off
+
+$HOME/.pgenv/bin/pgenv start
 
 # exec i3
