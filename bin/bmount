@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo cryptsetup open /dev/disk/by-uuid/723ce096-e97b-4f03-b013-d73d6329ad85 backup
+sudo mount /dev/mapper/backup /mnt/backup

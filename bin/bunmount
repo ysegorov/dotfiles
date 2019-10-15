@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo umount /dev/mapper/backup
+sudo cryptsetup close backup
