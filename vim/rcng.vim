@@ -45,7 +45,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
 Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'LargeFile'
 Plug 'terryma/vim-expand-region'
 
 " git
@@ -53,6 +52,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 
 call plug#end()
+
+syntax on
 
 
 runtime ftplugin/man.vim
