@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
 
 cwd=`pwd`
+target=${HOME}
 
-ln -sfi ${cwd}/bin ${HOME}/
-ln -sfi ${cwd}/.bash.d ${HOME}/
-ln -sfiv ${cwd}/.i3 ${cwd}/.xprofile ${cwd}/.Xresources ${cwd}/.inputrc ${cwd}/.bashrc ${cwd}/.bash_profile ${cwd}/.pylintrc ${cwd}/.hgrc ${cwd}/.dircolors ${cwd}/.gitconfig ${cwd}/.ackrc ${cwd}/.psqlrc ${HOME}
+ln -sfvi -T ${cwd}/bin ${target}/.bin
+ln -sfvi -T ${cwd}/bash.d ${target}/.bash.d
+ln -sfvi -T ${cwd}/vim ${target}/.vim
 
-mkdir -p ${HOME}/.config/
-ln -sfiv ${cwd}/.config/dunst ${HOME}/.config/
-ln -sfiv ${cwd}/.config/termite ${HOME}/.config/
-ln -sfiv ${cwd}/.config/compton ${HOME}/.config/
+find ${cwd} -maxdepth 1 -type f \( \! -name 'setup.sh' \! -name '.gitignore' \) -exec bash -c 'ln -svfi -T "$1" "$2/.`basename $1`"' _ {} ${target} \;
 
-#mkdir -p ${HOME}/.config/mc/
-#ln -sfiv ${cwd}/.config/mc/solarized.ini ${HOME}/.config/mc/
+mkdir -p ${target}/.config/
+ln -sfiv ${cwd}/config/i3 ${cwd}/config/dunst ${cwd}/config/termite ${cwd}/config/chromium-flags.conf ${target}/.config/
 
-mkdir -p ${HOME}/_npm
-echo "prefix=${HOME}/_npm" >>${HOME}/.npmrc
+mkdir -p ${target}/_npm
