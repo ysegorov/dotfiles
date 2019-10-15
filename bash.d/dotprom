@@ -1,10 +1,5 @@
 
 # dotprom
 alias dpwifi='sudo netctl start dotpromwifi'
-#alias dpchrome='chromium --no-proxy-server --user-data-dir="${HOME}/.config/chromium.at.dotprom/"'
-alias dpopera='opera-developer --user-data-dir="${HOME}/.config/opera.at.dotprom/" --proxy-server="socks5://127.0.0.1:12021" --proxy-bypass-list="localhost,127.0.0.1,.local,.docs,.dotcomltd.ru"'
-#alias dpopera='opera-developer --no-proxy-server --user-data-dir="${HOME}/.config/opera.at.dotprom/"'
-#
-# alias dpff='firefox-developer --profile "${HOME}/.config/firefox-developer.at.dotprom/"'
 
 # vim: ft=sh:

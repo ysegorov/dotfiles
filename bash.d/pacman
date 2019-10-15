@@ -1,5 +1,5 @@
 
-# pacman aliases (if applicable, replace 'pacman' with your favorite AUR helper) ## {{{
+# pacman aliases (if applicable, replace 'pacman' with your favorite AUR helper)
 alias pac="pacman -S"      # default action     - install one or more packages
 alias pacu="pacman -Syu"   # '[u]pdate'         - upgrade all packages to their newest version
 alias pacs="pacman -Ss"    # '[s]earch'         - search for a package using one or more keywords
@@ -12,6 +12,5 @@ alias paco="pacman -Qo"    # '[o]wner'          - determine which package owns a
 alias pacf="pacman -Ql"    # '[f]iles'          - list all files installed by a given package
 alias pacc="pacman -Sc"    # '[c]lean cache'    - delete all not currently installed package files
 alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD file in current directory
-# }}}
 
 # vim: ft=sh:

@@ -1,7 +1,0 @@
-
-# skype
-# https://wiki.archlinux.org/index.php/Skype#Use_Skype_with_special_user
-# yaourt -S lib32-apulse
-alias skype='xhost +local: && sudo -u skype apulse32 /usr/bin/skypeforlinux'
-
-# vim: ft=sh:
