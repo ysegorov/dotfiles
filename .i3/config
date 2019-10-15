@@ -47,7 +47,9 @@ set $transparent #00000000
 
 # Font for window titles
 # font pango:DejaVu Sans Mono 10
-font pango:xos4 Terminus, FontAwesome 9
+# font pango:xos4 Terminus, FontAwesome 9
+# font FontAwesome 9, PT Mono 9
+font pango:FontAwesome 9, Roboto 9
 
 #                       BORDER        BACKGROUND   TEXT        INDICATOR   CHILD_BORDER
 client.focused          $darkblue    $darkblue     $fg2        $darkblack  $darkblue
@@ -180,7 +182,11 @@ bar {
     tray_output primary
     separator_symbol " "
     strip_workspace_numbers yes
-    font pango:xos4 Terminus 9
+    # font PT Mono 9
+    # font FontAwesome 9, PT Mono 9
+    # font pango:Terminus 8
+    font pango:Roboto Condensed 8
+    # font pango:PT Sans Narrow 10
     # font pango:Inconsolata 9
 
     colors {
