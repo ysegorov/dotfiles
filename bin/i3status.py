@@ -111,7 +111,7 @@ def acpi():
 
 
 def keyboard():
-    kbd = run('xkb-switch')
+    kbd = run('xkblayout-state print "%s"')
     prefix = '\uf11c'
     color = None if kbd == 'us' else WARN
     return block('keyboard', '%s %s' % (prefix, kbd), color)
