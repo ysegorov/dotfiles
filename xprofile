@@ -9,6 +9,12 @@ xrandr --output eDP1 --primary
 
 # sh ~/.fehbg &
 
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK_NG="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 # if we have private ssh key(s), start ssh-agent and add the key(s)
 
 id3=$HOME/.ssh/id_rsa
