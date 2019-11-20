@@ -10,6 +10,6 @@ ln -sfvi -T ${cwd}/vim ${target}/.vim
 find ${cwd} -maxdepth 1 -type f \( \! -name 'setup.sh' \! -name '.gitignore' \) -exec bash -c 'ln -svfi -T "$1" "$2/.`basename $1`"' _ {} ${target} \;
 
 mkdir -p ${target}/.config/
-ln -sfiv ${cwd}/config/i3 ${cwd}/config/dunst ${cwd}/config/termite ${cwd}/config/chromium-flags.conf ${target}/.config/
+ln -sfiv ${cwd}/config/i3 ${cwd}/config/neomutt ${cwd}/config/dunst ${cwd}/config/termite ${cwd}/config/chromium-flags.conf ${cwd}/config/todotxt ${target}/.config/
 
 mkdir -p ${target}/_npm
