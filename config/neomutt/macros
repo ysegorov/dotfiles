@@ -1,0 +1,22 @@
+# vim: ft=muttrc
+
+macro index \ci "<change-folder>!<enter>"  "go to inbox"
+macro index <f2> "<pipe-message>cat > ~/"   "save message as"
+macro index <space> "<collapse-thread>"        "[un]collapse thread"
+
+macro index \cy "<shell-escape>mbsync -a<enter>" "call mbsync to sync mailboxes"
+
+macro index,pager \cb "<pipe-message> urlscan -d <enter>" "call urlscan to extract urls"
+macro attach,compose \cb "<pipe-message> urlscan -d <enter>" "call urlscan to extract urls"
+
+macro index \cf "\
+  <enter-command>\
+    set my_old_wait_key=\$wait_key \
+    nowait_key \
+  <enter>\
+  <shell-escape>notmuch-mutt --prompt search<enter>\
+  <change-folder-readonly>~/.cache/notmuch/neomutt/results<enter>\
+  <enter-command>\
+    set wait_key=\$my_old_wait_key \
+  <enter>" \
+  "search using notmuch"

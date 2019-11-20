@@ -1,0 +1,13 @@
+application/octet-stream ; echo %s "can be anything..."                     ; copiousoutput
+# text/html                ; /usr/bin/w3m -I %{charset} -T text/html '%s'     ; needsterminal
+# text/html                ; /usr/bin/w3m -I %{charset} -T text/html -dump %s ; copiousoutput
+text/html                ; /usr/bin/elinks -dump %s                         ; copiousoutput
+application/pdf          ; /usr/bin/mupdf %s                                ; copiousoutput
+image/*                  ; /usr/bin/feh %s                                  ; copiousoutput
+audio/*                  ; /usr/bin/mplayer %s                              ; copiousoutput
+video/*                  ; /usr/bin/mplayer %s                              ; copiousoutput
+
+
+# application/msword       ; /usr/bin/lowriter '%s'                           ; test=test -n "$DISPLAY"
+application/msword       ; /usr/bin/antiword -f -i 1 -w 100 '%s'             ; copiousoutput
+application/vnd.ms-excel ; /usr/bin/localc '%s'                             ; test=test -n "$DISPLAY"

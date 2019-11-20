@@ -1,0 +1,113 @@
+
+###
+# dotprom at 4int.ru
+###
+
+IMAPAccount passware
+Host imap.gmail.com
+User dotprom@4int.ru
+PassCmd "pass 4int.ru/mail/dotprom"
+SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore passware-remote
+Account passware
+
+MaildirStore passware-local
+# The trailing "/" is important
+Path ~/.mail/passware/
+Inbox ~/.mail/passware/Inbox
+
+Channel passware-default
+Master :passware-remote:
+Slave :passware-local:Inbox
+#Patterns INBOX
+
+Channel passware-sent
+Master :passware-remote:"[Gmail]/Sent Mail"
+slave  :passware-local:Sent
+
+Channel passware-trash
+Master :passware-remote:"[Gmail]/Trash"
+slave  :passware-local:Trash
+
+Channel passware-archive
+Master :passware-remote:"[Gmail]/All Mail"
+slave  :passware-local:All
+
+Channel passware-drafts
+Master :passware-remote:"[Gmail]/Drafts"
+slave  :passware-local:Drafts
+
+Channel passware-junk
+Master :passware-remote:"[Gmail]/Spam"
+slave  :passware-local:Junk
+
+Group passware
+Channel passware-default
+Channel passware-trash
+Channel passware-archive
+Channel passware-sent
+Channel passware-junk
+Channel passware-drafts
+
+Create Both
+Expunge Both
+SyncState *
+
+
+###
+# egorov at 4int.ru
+###
+
+IMAPAccount personal
+Host imap.gmail.com
+User egorov@4int.ru
+PassCmd "pass 4int.ru/mail/egorov"
+SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore personal-remote
+Account personal
+
+MaildirStore personal-local
+# The trailing "/" is important
+Path ~/.mail/personal/
+Inbox ~/.mail/personal/Inbox
+
+Channel personal-default
+Master :personal-remote:
+Slave :personal-local:Inbox
+#Patterns INBOX
+
+Channel personal-sent
+Master :personal-remote:"[Gmail]/Sent Mail"
+slave  :personal-local:Sent
+
+Channel personal-trash
+Master :personal-remote:"[Gmail]/Trash"
+slave  :personal-local:Trash
+
+Channel personal-archive
+Master :personal-remote:"[Gmail]/All Mail"
+slave  :personal-local:All
+
+Channel personal-drafts
+Master :personal-remote:"[Gmail]/Drafts"
+slave  :personal-local:Drafts
+
+Channel personal-junk
+Master :personal-remote:"[Gmail]/Spam"
+slave  :personal-local:Junk
+
+Group personal
+Channel personal-default
+Channel personal-trash
+Channel personal-archive
+Channel personal-sent
+Channel personal-junk
+Channel personal-drafts
+
+Create Both
+Expunge Both
+SyncState *

@@ -1,0 +1,6 @@
+# vim: ft=muttrc
+
+folder-hook personal/*    source $my_configdir/accounts/personal
+folder-hook passware/*    source $my_configdir/accounts/passware
+
+source $my_configdir/accounts/personal # default account

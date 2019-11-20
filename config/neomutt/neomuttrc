@@ -1,0 +1,87 @@
+# vim: ft=muttrc
+
+  set my_configdir      = ~/.config/neomutt
+  set my_cachedir       = ~/.cache/neomutt
+  set my_tmpdir         = ~/_tmp/neomutt
+
+  set askcc
+unset beep
+unset beep_new
+  set charset           = "utf-8"
+unset confirmappend
+  set date_format       = "%Y-%m-%d %H:%M"
+  set delete
+  set edit_headers
+  set editor            = "vim +:silent+?^$"
+  set fast_reply
+  set fcc_attach
+  set folder            = ~/.mail
+  set forward_format    = "Fwd: %s"
+  set forward_quote
+  set header_cache      = $my_cachedir/headers
+# unset help
+  set include
+  set index_format      = "[%Z] %?X?A&-? %D  %-20.20F  %s"
+  # set index_format      = "%3C %Z %[!%m/%d] %-17.17F %s"
+  set mail_check        = 0
+  set mail_check_stats
+  set mailcap_path      = $my_configdir/mailcap
+unset mark_old
+unset markers
+  set message_cachedir  = $my_cachedir/bodies
+  set mime_forward      = ask-no
+  set mbox_type         = Maildir
+  set menu_scroll
+unset move
+  set pager_context     = 5
+  set pager_index_lines = 10
+  set pager_stop
+  set pipe_decode
+  set quote_regex       = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+  set realname          = "Yuri Egorov"
+unset record
+  set reply_regex       = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+  set reply_to
+  set reverse_name
+  set rfc2047_parameters
+  set send_charset      = "utf-8:cp1251:koi8-r:iso-8859-1:us-ascii"
+  set signature         = $my_configdir/signature
+  set sleep_time        = 0
+  set sort              = threads
+  set sort_aux          = reverse-last-date-received
+  set status_chars      = " *%A"
+  set status_format     = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]%>─%?p?( %p postponed )?"
+  # set status_format     = "-%r- %f%?t? Tagged:%t?%?p? Drafts:%p? -%>-"
+  set status_on_top
+  set strict_threads
+  set text_flowed
+  set thorough_search
+  set tilde
+  set timeout           = 3
+  set tmpdir            = $my_tmpdir
+  set wait_key          = no
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+ignore *
+unignore from: to: cc: bcc: date: subject: reply-to: mail-followup-to: x-mailer: user-agent: x-spam:
+
+unhdr_order *
+hdr_order from: to: cc: bcc: date: subject: reply-to: x-mailer:
+
+# subscribe arch-announce arch-dev-public arch-haskell aur-general \
+#           commercial-haskell rubyparley vim web-devel xmonad yesod
+
+named-mailboxes Personal =fake01
+mailboxes =personal/Inbox =personal/All =personal/Drafts =personal/Sent =personal/Junk =personal/Trash
+named-mailboxes Passware =fake02
+mailboxes =passware/Inbox =passware/All =passware/Drafts =passware/Sent =passware/Junk =passware/Trash
+
+source $my_configdir/colors
+source $my_configdir/sidebar
+source $my_configdir/bindings
+source $my_configdir/macros
+source $my_configdir/gpg
+source $my_configdir/hooks
+

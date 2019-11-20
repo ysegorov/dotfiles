@@ -1,0 +1,21 @@
+# vim: ft=muttrc
+
+set from          = "egorov@passware.com"
+set sendmail      = "/usr/bin/msmtp -a passware"
+
+set spoolfile     = "+passware/Inbox"
+set mbox          = "+passware/All"
+set postponed     = "+passware/Drafts"
+set trash         = "+passware/Trash"
+set record        = ""
+# set record        = "+passware/Sent"
+
+unalternates *
+alternates ^egorov@passware\\.com$ ^dotprom@4int\\.ru$
+
+color status color11 color234
+
+macro index,pager I "<save-message>+passware/Inbox<enter>" "move message to the inbox"
+macro index,pager A "<save-message>+passware/All<enter>" "move message to the archive"
+macro index,pager J "<save-message>+passware/Junk<enter>"  "mark message as spam"
+

@@ -1,0 +1,21 @@
+# vim: ft=muttrc
+
+set from          = "egorov@4int.ru"
+set sendmail      = "/usr/bin/msmtp -a personal"
+
+set spoolfile     = "+personal/Inbox"
+set mbox          = "+personal/All"
+set postponed     = "+personal/Drafts"
+set trash         = "+personal/Trash"
+set record        = ""
+# set record        = "+personal/Sent"
+
+unalternates *
+alternates ^egorov@4int\\.ru$ ^ysegorov@4int\\.ru$ ^ad@4int\\.ru$
+
+color status color144 color234
+
+macro index,pager I "<save-message>+personal/Inbox<enter>" "move message to the inbox"
+macro index,pager A "<save-message>+personal/All<enter>" "move message to the archive"
+macro index,pager J "<save-message>+personal/Junk<enter>"  "mark message as spam"
+
