@@ -61,7 +61,7 @@ unset record
   set tmpdir            = $my_tmpdir
   set wait_key          = no
 
-auto_view text/html
+# auto_view text/html
 alternative_order text/plain text/enriched text/html
 
 ignore *

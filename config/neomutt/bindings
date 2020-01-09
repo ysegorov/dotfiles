@@ -26,6 +26,7 @@ bind index \CN toggle-new
 bind index,pager <down> sidebar-next
 bind index,pager <up> sidebar-prev
 bind index,pager <right> sidebar-open
+bind index,pager ,s sidebar-toggle-visible
 
 # index and pager shortcuts
 bind index,pager @ compose-to-sender
