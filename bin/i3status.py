@@ -11,7 +11,7 @@ from decimal import Decimal
 
 
 DELAY = 5
-WIFI = 'wlp3s0'
+WIFI = 'wifi1'
 WARN = '#d79921'
 ALARM = '#fb4934'
 INFO = '#b8bb26'
