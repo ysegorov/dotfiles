@@ -11,7 +11,6 @@ from decimal import Decimal
 
 
 DELAY = 5
-WIFI = 'wifi1'
 WARN = '#d79921'
 ALARM = '#fb4934'
 INFO = '#b8bb26'
@@ -31,23 +30,35 @@ def block(name, text, color=None):
 
 
 def wireless():
+    symb = '\uf1eb'
+    stat = run('iwgetid')
+    if not stat:
+        return block('wireless', '%s 0%%' % symb, WARN)
+    WIFI, essid = stat.split()
+    if '"' in essid:
+        name = essid.split('"')[1]
+    else:
+        name = 'unknown'
     operstate = os.path.join('/', 'sys', 'class', 'net', WIFI, 'operstate')
     is_online = os.path.isfile(operstate) \
         and open(operstate).read().strip() == 'up'
-    symb = '\uf1eb'
     if not is_online:
         return block('wireless', '%s 0%%' % symb, WARN)
-    name = run('iwgetid --raw')
     ip = run(
         'ip addr show dev %s |grep inet |grep %s |awk \'{print $2}\''
         % (WIFI, WIFI)
     )
     ip = ip and ip.split('/')[0]
     signal = run(
-        'grep %s /proc/net/wireless |awk \'{ print int($3 * 100 / 70) }\''
+        'iwconfig %s |grep "Link Quality" |awk \'{ print $1$2 }\''
         % WIFI
     )
-    signal = int(signal)
+    if signal and '=' in signal:
+        signal = signal.split('=')[1]
+        left, right = signal.split('/', 1)
+        signal = int(int(left) / int(right) * 100)
+    else:
+        signal = 0
     color = None if signal > 80 else signal > 30 and WARN or ALARM
     return block('wireless', '%s %s%% %s %s' % (symb, signal, name, ip), color)
 
