@@ -84,4 +84,5 @@ source $my_configdir/bindings
 source $my_configdir/macros
 source $my_configdir/gpg
 source $my_configdir/hooks
+source $my_configdir/aliases
 

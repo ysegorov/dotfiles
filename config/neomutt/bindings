@@ -43,7 +43,8 @@ bind compose P postpone-message
 bind index p recall-message
 
 # finding stuff
-bind editor <tab> complete-query
+bind editor <tab> complete
+# bind editor <tab> complete-query
 
 bind index,pager ,n next-new
 

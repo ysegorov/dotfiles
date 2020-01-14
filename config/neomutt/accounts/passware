@@ -7,8 +7,8 @@ set spoolfile     = "+passware/Inbox"
 set mbox          = "+passware/All"
 set postponed     = "+passware/Drafts"
 set trash         = "+passware/Trash"
-set record        = ""
-# set record        = "+passware/Sent"
+# set record        = ""
+set record        = "+passware/Sent"
 
 unalternates *
 alternates ^egorov@passware\\.com$ ^dotprom@4int\\.ru$
