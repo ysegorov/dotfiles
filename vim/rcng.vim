@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'jnurmine/Zenburn'
 Plug 'morhetz/gruvbox'
+Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 Plug 'mkarmona/colorsbox'
 
 " syntax
@@ -26,6 +27,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug '~/_dev/vim-yaggy'
 " Plug 'scrooloose/syntastic'
 " Plug 'nvie/vim-flake8'
 " Plug 'lunaru/vim-less'
@@ -195,13 +197,18 @@ let maplocalleader = " "
 set termguicolors
 " set t_Co=256
 set bg=dark
-let g:gruvbox_bold=0
-let g:gruvbox_italic=0
-let g:gruvbox_underline=0
-let g:gruvbox_undercurl=0
-let g:gruvbox_contrast_dark="soft"
-let g:gruvbox_improved_strings=0
-color gruvbox
+" let g:gruvbox_bold=0
+" let g:gruvbox_italic=0
+" let g:gruvbox_underline=0
+" let g:gruvbox_undercurl=0
+" let g:gruvbox_contrast_dark="hard"
+" let g:gruvbox_improved_strings=0
+" color gruvbox
+
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_enable_italic = 0
+let g:gruvbox_material_disable_italic_comment = 1
+colorscheme gruvbox-material
 " color xoria256
 " color zenburn
 " let g:solarized_italic=0
