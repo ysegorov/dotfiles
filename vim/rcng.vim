@@ -672,6 +672,13 @@ let g:ctrlp_user_command = {
 " polyglot
 " let g:polyglot_disabled = ['python', 'python-compiler']
 
+augroup polyglot_rust
+    au!
+    au FileType rust inoremap <F9> <esc>:make<cr>
+    au FileType rust nnoremap <F9> <esc>:make<cr>
+    au FileType rust vnoremap <F9> <esc>:make<cr>
+augroup END
+
 
 " flake8
 " let g:flake8_show_in_gutter = 1
