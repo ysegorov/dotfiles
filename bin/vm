@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+vmup() {
+    vboxmanage startvm $1 --type=headless
+}
+
+vmdown() {
+    vboxmanage controlvm $1 acpipowerbutton
+}
+
+vmstatus() {
+    vboxmanage showvminfo $1 |grep State
+}
+
+vminfo() {
+    vboxmanage showvminfo $1
+}
+
+command="$1"
+shift
+
+case "$command" in
+    up) vmup "$@" ;;
+    down) vmdown "$@" ;;
+    info) vminfo "$@" ;;
+    status) vmstatus "$@" ;;
+    *) echo "Usage: $0 up|down|info|status" >&2; exit 1 ;;
+esac
