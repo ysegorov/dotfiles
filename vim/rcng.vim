@@ -194,6 +194,7 @@ let maplocalleader = " "
 
 
 " color theme
+set term=xterm-256color
 set termguicolors
 " set t_Co=256
 set bg=dark

@@ -44,7 +44,7 @@ HISTCONTROL=ignoredups:ignorespace
 
 # Change the window title of X terminals
 case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix)
+    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|alacritty)
         PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
         ;;
     screen)
