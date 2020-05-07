@@ -1,0 +1,52 @@
+add_newline = false
+prompt_order = ["custom", "directory", "git_status", "python", "rust", "nodejs", "character"]
+
+[directory]
+truncate_to_repo = false
+prefix = ""
+
+[git_branch]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hostname]
+ssh_only = false
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+disabled = true
+
+[python]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[time]
+disabled = false
+format = "[%F %T]"
+style = "bright-white"
+prefix = ""
+
+[username]
+show_always = true
+suffix = ""
+prefix = "["
+disabled = false
+
+[custom.host]
+command = """echo "[local]" """
+style = "bright-yellow"
+when = "whoami"
+
+[custom.user]
+command = """echo "[$USER@$HOSTNAME `date +%T`]" """
+style="bright-white"
+when = "whoami"
+prefix = ""
+suffix = " "
