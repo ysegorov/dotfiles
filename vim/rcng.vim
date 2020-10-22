@@ -19,6 +19,7 @@ Plug 'jnurmine/Zenburn'
 Plug 'morhetz/gruvbox'
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 Plug 'mkarmona/colorsbox'
+Plug 'mhartington/oceanic-next'
 
 " syntax
 Plug 'sheerun/vim-polyglot'
@@ -209,12 +210,14 @@ set bg=dark
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_enable_italic = 0
 let g:gruvbox_material_disable_italic_comment = 1
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
 " color xoria256
 " color zenburn
 " let g:solarized_italic=0
 " let g:solarized_bold=0
 " color solarized
+" colorscheme colorsbox-material
+colorscheme OceanicNext
 
 
 " console cursor
