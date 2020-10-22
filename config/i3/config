@@ -15,48 +15,74 @@ set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
 
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
-# Use custom colors for black
-set_from_resource $bg0      color17 #000000
-set_from_resource $bg       color18 #000000
-set_from_resource $fg       color19 #000000
-set_from_resource $bg2      color20 #000000
-set_from_resource $fg3      color21 #000000
-set_from_resource $bg3      color22 #000000
-set_from_resource $fg2      color23 #000000
-set_from_resource $bg4      color24 #000000
-set_from_resource $fg1      color25 #000000
-set_from_resource $fg0      color27 #000000
-set_from_resource $orange   color28 #000000
-set $black       #282828
-set $darkblack   #1d2021
-set $transparent #00000000
+# set_from_resource $darkred     color1  #000000
+# set_from_resource $red         color9  #000000
+# set_from_resource $darkgreen   color2  #000000
+# set_from_resource $green       color10 #000000
+# set_from_resource $darkyellow  color3  #000000
+# set_from_resource $yellow      color11 #000000
+# set_from_resource $darkblue    color4  #000000
+# set_from_resource $blue        color12 #000000
+# set_from_resource $darkmagenta color5  #000000
+# set_from_resource $magenta     color13 #000000
+# set_from_resource $darkcyan    color6  #000000
+# set_from_resource $cyan        color14 #000000
+# set_from_resource $darkwhite   color7  #000000
+# set_from_resource $white       color15 #000000
+# # Use custom colors for black
+# set_from_resource $bg0      color17 #000000
+# set_from_resource $bg       color18 #000000
+# set_from_resource $fg       color19 #000000
+# set_from_resource $bg2      color20 #000000
+# set_from_resource $fg3      color21 #000000
+# set_from_resource $bg3      color22 #000000
+# set_from_resource $fg2      color23 #000000
+# set_from_resource $bg4      color24 #000000
+# set_from_resource $fg1      color25 #000000
+# set_from_resource $fg0      color27 #000000
+# set_from_resource $orange   color28 #000000
+# set $black       #282828
+# set $darkblack   #1d2021
+# set $transparent #00000000
+
+# see https://github.com/altdesktop/i3-style/tree/master/themes
+# colors from oceanic-next theme
+set $base00 #1B2B34
+set $base01 #343D46
+set $base02 #4F5B66
+set $base03 #65737E
+set $base04 #A7ADBA
+set $base05 #C0C5CE
+set $base06 #CDD3DE
+set $base07 #D8DEE9
+set $base08 #EC5f67
+set $base09 #F99157
+set $base0A #FAC863
+set $base0B #99C794
+set $base0C #5FB3B3
+set $base0D #6699CC
+set $base0E #C594C5
+set $base0F #AB7967
 
 # Font for window titles
 # font FontAwesome 9, PT Mono 9
 # font pango:FontAwesome 9, Roboto 9
 # NB. patched with icons Hack font, see https://github.com/ryanoasis/nerd-fonts
-font pango:Hack Nerd Font 9
+# font pango:Hack Nerd Font 10
+font pango:Ubuntu Mono Nerd Font 13
 
 #                       BORDER        BACKGROUND   TEXT        INDICATOR   CHILD_BORDER
-client.focused          $darkblue    $darkblue     $fg2        $darkblack  $darkblue
-client.unfocused        $bg0         $bg2          $fg         $darkblack  $bg0
-client.focused_inactive $bg0         $bg           $fg         $darkblack  #  $darkblack
-client.urgent           $darkred     $darkred      $black      $darkred    #  $darkred
-client.background       $bg0
+# client.focused          $darkblue    $darkblue     $fg2        $darkblack  $darkblue
+# client.unfocused        $bg0         $bg2          $fg         $darkblack  $bg0
+# client.focused_inactive $bg0         $bg           $fg         $darkblack  #  $darkblack
+# client.urgent           $darkred     $darkred      $black      $darkred    #  $darkred
+# client.background       $bg0
+
+client.focused          $base0D      $base0D       $base00     $base0D
+client.unfocused        $base00      $base01       $base07     $base01
+client.focused_inactive base0C       $base0C       $base07     $base04
+client.urgent           $base08      $base08       $base00     $base08
+# client.background       $bg0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -75,8 +101,8 @@ bindsym $mod+BackSpace kill
 
 # dmenu
 # bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Terminus-11'"
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'PT Sans-11'"
-bindsym $mod+p exec --no-startup-id passmenu -fn 'PT Sans-10'
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Ubuntu Condensed Nerd Font-14'"
+bindsym $mod+p exec --no-startup-id passmenu -fn 'Ubuntu Condensed Nerd Font-14'
 
 # move container
 bindsym $mod+Left focus left
@@ -177,7 +203,8 @@ bindsym $mod+q mode "$mode_system"
 
 bar {
     # status_command ~/bin/i3status.sh
-    status_command ~/.bin/i3status.py
+    # status_command ~/.bin/i3status.py
+    status_command ~/.cargo/bin/i3status
     position top
     mode dock
 
@@ -188,18 +215,30 @@ bar {
     # font FontAwesome 9, PT Mono 9
     # font pango:Terminus 8
     # font pango:Roboto Condensed 8
-    font pango:Hack Nerd Font 9
+    # font pango:Hack Nerd Font 10
+    font pango:Ubuntu Nerd Font 12
 
+    # colors {
+    #     background $bg
+    #     statusline $fg
+    #     separator $fg
+
+    #     # <colorclass> <border> <background> <text>
+    #     active_workspace $fg $bg $bg
+    #     urgent_workspace $darkyellow $darkyellow $bg
+    #     focused_workspace $fg $fg $bg
+    #     inactive_workspace $bg $bg $fg
+    # }
     colors {
-        background $bg
-        statusline $fg
-        separator $fg
+        background $base00
+        statusline $base07
+        separator $base03
 
         # <colorclass> <border> <background> <text>
-        active_workspace $fg $bg $bg
-        urgent_workspace $darkyellow $darkyellow $bg
-        focused_workspace $fg $fg $bg
-        inactive_workspace $bg $bg $fg
+        active_workspace $base0C $base0C $base00
+        urgent_workspace $base08 $base08 $base00
+        focused_workspace $base0D $base0D $base00
+        inactive_workspace $base01 $base01 $base07
     }
 }
 
