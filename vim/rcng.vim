@@ -28,6 +28,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'Chiel92/vim-autoformat'
 Plug '~/_dev/vim-yaggy'
 " Plug 'scrooloose/syntastic'
 " Plug 'nvie/vim-flake8'
@@ -335,7 +336,7 @@ function! Status(winnr)
         let head = fugitive#head()
 
         if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
-        call fugitive#detect(getcwd())
+        call FugitiveDetect(getcwd())
         let head = fugitive#head()
         endif
     endif
@@ -457,6 +458,8 @@ highlight ColorColumn cterm=None ctermbg=235 ctermfg=None guibg=#444444
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.js,*.css,*.sass,*.scss match BadWhitespace /\s\+$/
+" autoformat rust files
+au BufWrite *.rs :Autoformat
 
 augroup vimrc
 au!
