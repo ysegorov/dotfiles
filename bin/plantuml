@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar $HOME/bin/plantuml.jar -tpng $@
+java -jar $HOME/.bin/plantuml.jar -tpng $@
