@@ -1,0 +1,222 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/*
+ * https://github.com/voronianski/oceanic-next-color-scheme
+ *
+ */
+@define-color bg #1b2b34;
+@define-color bg0 #1d2e38;
+@define-color bg1 #0b2433;
+@define-color gray1 #343D46;
+@define-color gray2 #4F5B66;
+@define-color gray3 #65737E;
+@define-color gray4 #A7ADBA;
+@define-color gray5 #C0C5CE;
+@define-color gray6 #CDD3DE;
+@define-color fg #D8DEE9;
+@define-color red #EC5f67;
+@define-color orange #F99157;
+@define-color yellow #FAC863;
+@define-color green #99C794;
+@define-color cyan #5FB3B3;
+@define-color blue #6699CC;
+@define-color blue0 #285577;
+@define-color blue1 #4c7899;
+@define-color magenta #C594C5;
+@define-color brown #AB7967;
+@define-color white-alpha-01 rgba(255, 255, 255, .1);
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background: @bg0;
+    color: @fg;
+    font-family: Hack Nerd Font, monospace;
+    font-size: 15px;
+    letter-spacing: -0.25px;
+    border-bottom: 3px solid @blue0;
+}
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#custom-waybar-language,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#backlight,
+#idle_inhibitor,
+#temperature,
+#tray {
+    margin-bottom: 3px;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modules-right widget:nth-child(2n) label {
+    background-color: @bg1;
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#battery {
+}
+
+#battery.discharging {
+    color: @yellow;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+}
+
+#battery.warning.discharging {
+    color: @bg;
+    background-color: @yellow;
+}
+
+#battery.critical.discharging {
+    color: @bg;
+    background-color: @red;
+}
+
+#clock {
+    color: @cyan;
+    padding-left: 20px;
+}
+
+#cpu {
+}
+
+#cpu.warning {
+    color: @orange;
+}
+
+#cpu.critical {
+    color: @red;
+}
+
+#memory {
+}
+
+#memory.warning {
+    color: @orange;
+}
+
+#memory.critical {
+    color: @red;
+}
+
+#mode {
+    background: @gray2;
+    border-bottom: 3px solid @fg;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 20px;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+#network {
+}
+
+#network.disconnected {
+    color: @orange;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+    color: @orange;
+}
+
+#temperature {
+    /* No styles */
+}
+
+#temperature.critical {
+    color: @red;
+}
+
+#tray {
+    background-color: @bg0;
+}
+
+#custom-waybar-language {
+    color: @green;
+}
+
+#custom-waybar-language.ru {
+    color: @magenta;
+}
+
+#idle_inhibitor {
+    color: @yellow;
+    font-size: 16px;
+}
+
+#idle_inhibitor.activated {
+    color: @green;
+}
+
+#window {
+    font-weight: bold;
+}
+
+#workspaces button {
+    margin-bottom: 3px;
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: @gray6;
+}
+
+#workspaces button + button {
+    border-left: 1px solid @white-alpha-01;
+}
+
+#workspaces button.focused {
+    border-color: @blue0;
+    color: @fg;
+    background-color: @blue0;
+}
+#workspaces button.focused + button,
+#workspaces button.focused {
+    border-left-width: 0;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @fg;
+    border-bottom: 3px solid @blue0;
+    padding-top: 3px;
+}
