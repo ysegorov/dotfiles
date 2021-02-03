@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob globstar
+
+prefix=/usr/share/applications
+apps=( "$prefix"/**/*.desktop )
+apps=( "${apps[@]#"$prefix"/}" )
+apps=( "${apps[@]%.desktop}" )
+
+app=$(printf '%s\n' "${apps[@]}" | fzf --exact --reverse --no-bold "$@")
+
+[[ -n $app ]] || exit 1
+
+swaymsg exec gtk-launch "$app"
