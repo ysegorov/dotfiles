@@ -1,0 +1,16 @@
+
+# Logo key
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+set $browser chromium
+set $chrome google-chrome-stable
+
+set $lock "swaylock -f -c 000000"
+
+set $bg "#1d2e38"

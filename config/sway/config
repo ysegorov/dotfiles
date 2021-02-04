@@ -1,0 +1,14 @@
+
+include config.d/variables
+include config.d/layout
+include config.d/input
+include config.d/output
+include config.d/idle
+include config.d/mode
+include config.d/bindings
+include config.d/window
+include config.d/gnome
+
+include /etc/sway/config.d/*
+
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"

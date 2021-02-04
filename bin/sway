@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ENV_D_DIR=${HOME}/.local/env.d
+
+set -a
+if [ -d ${ENV_D_DIR} ]; then
+    for i in ${ENV_D_DIR}/*.bash; do
+        [ -f "${i}" ] && source "${i}"
+    done
+fi
+set +a
+
+systemd-cat --identifier sway /usr/bin/sway $@
