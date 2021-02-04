@@ -38,7 +38,7 @@
         "tooltip": "idle inhibitor {status}"
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">  {}</span>",
+        "format": "<span style=\"italic\">{}</span>",
         "tooltip": false
     },
     "sway/window": {
