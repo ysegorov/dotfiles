@@ -58,8 +58,8 @@ esac
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 
-if [ -d ${HOME}/.bash.d ]; then
-    for i in ${HOME}/.bash.d/*; do
+if [ -d ${HOME}/.local/bash.d ]; then
+    for i in ${HOME}/.local/bash.d/*; do
         [ -f "${i}" ] && source "${i}"
     done
 fi
