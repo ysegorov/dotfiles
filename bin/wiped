@@ -6,4 +6,4 @@ if [ -z "$1" ]; then
 fi
 
 PASS=$(tr -cd '[:alnum:]' </dev/urandom |head -c128)
-openssl enc -aes-256-ctr -pass pass:"$PASS" -nosalt </dev/zero |sudo dd bs=1M ibs=1M of=$1 status=progress
+openssl enc -aes-256-ctr -pass pass:"$PASS" -nosalt </dev/zero |sudo dd obs=1M ibs=1M of=$1 oflag=direct status=progress
