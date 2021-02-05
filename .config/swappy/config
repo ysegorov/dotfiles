@@ -1,0 +1,8 @@
+[Default]
+# NB. dir and filename are forced in sway config bindings file using "swappy -o filename.png"
+save_dir=$(xdg-user-dir PICTURES)/Screenshots
+save_filename_format=screenshot-%Y%m%d-%H%M%S.png
+show_panel=true
+line_size=5
+text_size=20
+text_font=PT Sans
