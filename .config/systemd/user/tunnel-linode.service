@@ -1,0 +1,14 @@
+[Unit]
+Description=Tunnel to linode server
+PartOf=graphical-session.target
+After=graphical-session.target
+# After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+# ExecStart=/bin/autossh -M 0 -o ExitOnForwardFailure=yes -o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ControlMaster=no" -o "IdentitiesOnly yes" -N -D 127.0.0.1:12021 -i ~/.ssh/tunnel_id_rsa tunnel@139.162.156.104 -p 42824
+ExecStart=/bin/autossh -M 0 -o ExitOnForwardFailure=yes -o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ControlMaster=no" -o "IdentitiesOnly yes" -N -D 127.0.0.1:12021 -i ~/.ssh/tunnel_id_rsa tunnel@80.85.84.105 -p 22116
+ExecStop=/bin/kill $MAINPID
+
+[Install]
+WantedBy=graphical-session.target

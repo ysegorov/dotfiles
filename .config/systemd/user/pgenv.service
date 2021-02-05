@@ -1,0 +1,15 @@
+[Unit]
+Description=PostgreSQL binary manager
+Documentation=https://github.com/theory/pgenv/
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=forking
+ExecStart=%h/.pgenv/bin/pgenv start
+ExecStop=%h/.pgenv/bin/pgenv stop
+# Restart=always
+# RestartSec=3s
+
+[Install]
+WantedBy=graphical-session.target

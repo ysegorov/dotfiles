@@ -1,0 +1,17 @@
+[Unit]
+Description=Highly customizable Wayland bar for Sway and Wlroots based compositors.
+Documentation=https://github.com/Alexays/Waybar/wiki/
+PartOf=graphical-session.target
+After=graphical-session.target
+
+# StartLimitIntervalSec=500
+# StartLimitBurst=5
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/waybar
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=graphical-session.target

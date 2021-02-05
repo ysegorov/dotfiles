@@ -1,0 +1,19 @@
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target graphical-session.target
+Wants=network-online.target
+PartOf=graphical-session.target
+
+[Service]
+Type=forking
+Environment="NGINX_CONF=%h/.config/nginx/nginx.conf"
+Environment="NGINX_PREFIX_PATH=%h/.config/nginx"
+PIDFile=%h/.config/nginx/run/nginx.pid
+ExecStartPre=/usr/bin/nginx -t -c $NGINX_CONF -p $NGINX_PREFIX_PATH
+ExecStart=/usr/bin/nginx -c $NGINX_CONF -p $NGINX_PREFIX_PATH
+ExecReload=/usr/bin/nginx -s reload -c $NGINX_CONF -p $NGINX_PREFIX_PATH
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=graphical-session.target

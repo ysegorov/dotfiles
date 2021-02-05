@@ -1,0 +1,13 @@
+[Unit]
+Description=SSH keys loader
+Documentation=man:ssh(1)
+After=graphical-session.target ssh-agent.service
+Wants=ssh-agent.service
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/load-keys
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Mailbox synchronization timer
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Timer]
+OnStartupSec=1m
+OnUnitActiveSec=30s
+Unit=mbsync.service
+
+[Install]
+WantedBy=graphical-session.target
