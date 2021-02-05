@@ -33,6 +33,7 @@ unset markers
   set mbox_type         = Maildir
   set menu_scroll
 unset move
+  set new_mail_command  = "notify-send --icon='/usr/share/icons/Adwaita/32x32/legacy/mail-unread.png' 'New Email' '%n new messages, %u unread.' &"
   set pager_context     = 5
   set pager_index_lines = 10
   set pager_stop
