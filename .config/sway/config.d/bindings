@@ -23,7 +23,7 @@ set $pmenu $term --class=pmenu -e pmenu
 bindsym $mod+p exec $pmenu
 
 # screenshot using PrtSc key
-bindsym Print exec swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp -o | grim -g - - | swappy -f - -o $(xdg-user-dir PICTURES)/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym Print exec take-screenshot
 
 # send signal to waybar to update keyboard layout indicator on CapsLock
 bindsym ISO_Next_Group exec "pkill --signal SIGRTMIN+1 waybar"

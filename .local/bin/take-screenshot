@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+dt=$(date +%Y%m%d-%H%M%S)
+folder=$(xdg-user-dir SCREENSHOTS)
+[ ! -d "$folder" ] && mkdir -p "$folder"
+filename="${folder}/screenshot-${dt}.png"
+
+swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp -o | grim -g - - | swappy -f - -o ${filename}
