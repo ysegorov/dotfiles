@@ -8,4 +8,6 @@ export PSQLRC=${XDG_CONFIG_HOME}/psql/config
 
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
 
+export HGRCPATH=${XDG_CONFIG_HOME}/hg
+
 export LESSHISTFILE=-
