@@ -6,4 +6,6 @@ export PYLINTRC=${XDG_CONFIG_HOME}/pylint/config
 
 export PSQLRC=${XDG_CONFIG_HOME}/psql/config
 
+export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
+
 export LESSHISTFILE=-

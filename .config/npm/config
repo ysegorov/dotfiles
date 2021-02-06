@@ -1,5 +1,5 @@
 ca=null
-prefix=/home/egorov/_npm
+#prefix=/home/egorov/_npm
 init.author.name=Yuri Egorov
 init.author.email=ysegorov@gmail.com
 init.author.github=ysegorov
