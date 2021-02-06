@@ -4,4 +4,4 @@ if pgrep -x mbsync > /dev/null; then
     exit 0
 fi
 
-mbsync -a
+mbsync -c "${MBSYNC_CONFIG}" -a
