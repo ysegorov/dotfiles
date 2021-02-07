@@ -9,7 +9,7 @@ link () {
     mkdir -p "$(dirname "$dst")"
     rm -rf "$dst"
     ln -s "$src" "$dst"
-    printf "[ok] %s -> %s\n" $src $dst
+    printf "[ok] %s -> %s\n" $dst $src
 }
 
 unlink() {
@@ -41,9 +41,9 @@ echo "================================"
 echo "   Setting up .local links...   "
 echo "================================"
 
-link ".local/bin"
-link ".local/bash.d"
-link ".local/env.d"
+unlink ".local/env.d"
+link   ".local/bin"
+link   ".local/bash.d"
 
 echo "================================="
 echo "   Setting up .config links...   "
@@ -51,6 +51,7 @@ echo "================================="
 
 dmode ".cache/psql" "700"
 link ".config/alacritty"
+link ".config/environment.d"
 link ".config/hg"
 link ".config/inputrc"
 link ".config/git"
@@ -88,6 +89,7 @@ unlink ".gitconfig"
 unlink ".mbsyncrc"
 unlink ".msmtprc"
 unlink ".npmrc"
+unlink ".pam_environment"
 unlink ".psqlrc"
 unlink ".pylintrc"
 unlink ".jshintrc"
@@ -101,7 +103,6 @@ link   ".bash_profile"
 link   ".bashrc"
 link   ".dircolors"
 link   ".gtkrc-2.0.mine"
-link   ".pam_environment"
 link   ".pypirc"
 
 echo "=================================="
