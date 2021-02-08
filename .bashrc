@@ -36,8 +36,9 @@ set bell-style visual       # visual bell
 
 # set history variables
 unset HISTFILESIZE
-HISTSIZE=100000
-HISTCONTROL=ignoredups:ignorespace
+unset HISTFILE
+# HISTSIZE=100000
+# HISTCONTROL=ignoredups:ignorespace
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
