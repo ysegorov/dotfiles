@@ -12,3 +12,4 @@ include config.d/gnome
 include /etc/sway/config.d/*
 
 exec "systemctl --user start sway-session.target"
+exec load-keys

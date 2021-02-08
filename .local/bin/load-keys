@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-ssh-add ${SSH_KEYS}
+eval $(ssh-agent -s -a ${SSH_AUTH_SOCK})
+
+SSH_ASKPASS_REQUIRE=prefer ssh-add ${SSH_KEYS}
 
 echo | gpg --no-tty --local-user ${GPG_USER} --sign -o- >/dev/null
