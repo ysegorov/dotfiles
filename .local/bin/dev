@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob globstar
+
+if [ "$#" -gt 0 ]; then q="-q $@"; else q=""; fi
+
+p1=$(fd -t d -d 1 -a . /home/dotprom/dev)
+p2=$(fd -t d -d 1 -a . "${HOME}/dev")
+
+folder=$(printf '%s\n' "${p1[@]}" "${p2[@]}" | fzf --select-1 --reverse --no-bold -d "/" -n -1 --with-nth=-1 $q)
+
+[[ -n $folder ]] || exit 1
+
+${SHELL} -c "cd ${folder}; exec ${SHELL}"
+

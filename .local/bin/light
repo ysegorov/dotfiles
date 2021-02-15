@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    up)
+        brightnessctl set +5% 2>&1 >/dev/null
+        ;;
+    down)
+        brightnessctl set 5%- 2>&1 >/dev/null
+        ;;
+    *)
+        ;;
+esac
+
+val=$(brightnessctl info -m | cut -f 4 -d ,)
+
+notify-send "Brightness" "Value: ${val}"

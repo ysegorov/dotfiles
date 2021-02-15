@@ -11,4 +11,4 @@ password=$(printf '%s\n' "${password_files[@]}" | fzf --exact --reverse --no-bol
 
 [[ -n $password ]] || exit 1
 
-swaymsg exec -- pass show -c "$password" 2>/dev/null
+swaymsg exec -- "pass show \"$password\" 2>/dev/null | wl-copy --paste-once --trim-newline"
