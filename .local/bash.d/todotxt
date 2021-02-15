@@ -1,4 +1,0 @@
-
-alias todo='todo.sh -d $HOME/.config/todotxt/config'
-
-# vim: ft=sh:

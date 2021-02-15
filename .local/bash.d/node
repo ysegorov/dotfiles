@@ -1,5 +1,0 @@
-
-export NODE_PATH=${HOME}/_npm/lib/node_modules:${NODE_PATH}:/usr/lib/node_modules
-export PATH=$HOME/_npm/bin:$PATH
-
-# vim: ft=sh:

@@ -1,5 +1,0 @@
-
-# dotprom
-alias dpwifi='sudo netctl start dotpromwifi'
-
-# vim: ft=sh:

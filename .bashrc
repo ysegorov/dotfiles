@@ -1,47 +1,41 @@
-# /etc/skel/.bashrc
+
+# NB. This file is sourced by all *interactive* bash shells on startup.
+#     Make sure this doesn't display anything!
 #
-# This file is sourced by all *interactive* bash shells on startup,
-# including some apparently interactive shells such as scp and rcp
-# that can't tolerate any output.  So make sure this doesn't display
-# anything or bad things will happen !
 
-
-# Test for an interactive shell.  There is no need to set anything
-# past this point for scp and rcp, and it's important to refrain from
-# outputting anything in those cases.
+# NB. exit if shell is non-interactive
 if [[ $- != *i* ]] ; then
-    # Shell is non-interactive.  Be done now!
     return
 fi
 
 
-# bash options ------------------------------------
-#set -o vi                   # Vi mode
-#set -o noclobber            # do not overwrite files
-#shopt -s autocd             # change to named directory
-#shopt -s cdable_vars        # if cd arg is not valid, assumes its a var defining a dir
-shopt -s cdspell            # autocorrects cd misspellings
-shopt -s checkwinsize       # update the value of LINES and COLUMNS after each command if altered
-shopt -s cmdhist            # save multi-line commands in history as single line
-shopt -s histappend         # do not overwrite history
-shopt -s dotglob            # include dotfiles in pathname expansion
-shopt -s expand_aliases     # expand aliases
-shopt -s extglob            # enable extended pattern-matching features
-shopt -s globstar           # recursive globbing
-shopt -s progcomp           # programmable completion
-shopt -s hostcomplete       # attempt hostname expansion when @ is at the beginning of a word
-shopt -s nocaseglob         # pathname expansion will be treated as case-insensitive
+# NB. set shell options, see man bash, shell builtin commands section
+shopt -s \
+    cdspell checkwinsize cmdhist histappend dotglob expand_aliases \
+    extglob globstar progcomp hostcomplete nocaseglob
 
-set bell-style visual       # visual bell
+set bell-style visual
 
-# set history variables
+# NB. disable history
+# set +o history  # this will disable in-memory shell history
 unset HISTFILESIZE
 unset HISTFILE
 # HISTSIZE=100000
 # HISTCONTROL=ignoredups:ignorespace
 
+
+### lesspipe.sh: yaourt -S lesspipe
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
+### LS_COLORS: yaourt -S lscolors-git
+[[ -f /usr/share/LS_COLORS/dircolors.sh ]] && source /usr/share/LS_COLORS/dircolors.sh
+
+
+### stardict: yaourt -S sdcv
+export STARDICT_DATA_DIR="${XDG_CONFIG_HOME}/stardict"
+
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -54,14 +48,148 @@ case ${TERM} in
 esac
 
 
-## source useful files
-[[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
-[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
-[[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
+### bash prompt
+# gruvbox colors for terminal supporting 24 bit colors
+color_reset="\033[0m"
+color_prefix="\033[38;2;"
+red="${color_prefix}251;73;52m"
+green="${color_prefix}184;187;38m"
+aqua="${color_prefix}142;192;124m"
+yellow="${color_prefix}250;189;47m"
+blue="${color_prefix}131;165;152m"
+magenta="${color_prefix}211;134;155m"
+orange="${color_prefix}254;128;25m"
+neutro="${color_prefix}235;219;178m"
 
-if [ -d ${HOME}/.local/bash.d ]; then
-    for i in ${HOME}/.local/bash.d/*; do
-        [ -f "${i}" ] && source "${i}"
-    done
+vcs_status() {
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCOLORHINTS=1
+
+    if [ -z "$1" ]; then curdir="$(pwd)"; else curdir="$1"; fi
+    if [ -d "$curdir/.git" ]; then echo "git:$(__git_ps1 %s)"; return 0; fi
+    if [ "$curdir" != '/' ]; then vcs_status $(dirname "$curdir"); fi
+}
+
+retval() {
+    if [[ $? != 0 ]]; then printf "$red[!] "; else printf ""; fi
+}
+
+# function setting prompt string
+bash_prompt() {
+    local host_color=$(if [[ $UID == 0 ]]; then echo "$red"; else echo "$neutro"; fi)
+    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$aqua\]\"; else echo \"\[$orange\]\"; fi)\w"
+
+    PS1="\$(retval)\[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \[\$(vcs_status)\] \[$color_reset\]\$ "
+}
+
+[[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
+bash_prompt
+unset bash_prompt
+
+
+### pgenv: git clone https://github.com/theory/pgenv.git ~/
+pgenv_root="${HOME}/.pgenv"
+if [ -d "${pgenv_root}" ]; then
+    export PATH="${HOME}/.pgenv/bin:${HOME}/.pgenv/pgsql/bin:${PATH}"
 fi
+unset pgenv_root
+
+
+### nodenv: git clone https://github.com/nodenv/nodenv.git ~/.local/
+nodenv_root="$HOME/.local/nodenv"
+
+if [ -d "${nodenv_root}" ]; then
+    export PATH="${nodenv_root}/shims:${nodenv_root}/bin:${PATH}"
+    # eval "$(nodenv init -)"
+    export NODENV_SHELL=bash
+    source "${nodenv_root}/completions/nodenv.bash"
+    # command nodenv rehash 2>/dev/null
+    nodenv() {
+        local command
+        command="${1:-}"
+        if [ "$#" -gt 0 ]; then
+            shift
+        fi
+
+        case "$command" in
+            rehash|shell)
+                eval "$(nodenv "sh-$command" "$@")";;
+            *)
+                command nodenv "$command" "$@";;
+        esac
+    }
+fi
+unset nodenv_root
+
+
+### pyenv: git clone https://github.com/pyenv/pyenv.git ~/.local/
+###        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.local/pyenv/plugins/
+pyenv_root="${HOME}/.local/pyenv"
+
+if [ -d "${pyenv_root}" ]; then
+    # export PATH="$pyenv_root/bin:$PATH"
+    # if command -v pyenv 1>/dev/null 2>&1; then
+    #     eval "$(pyenv init -)"
+    #     eval "$(pyenv virtualenv-init -)"
+    # fi
+
+    export PATH="${pyenv_root}/shims:${pyenv_root}/bin:${PATH}"
+    export PYENV_SHELL=bash
+    source "${pyenv_root}/completions/pyenv.bash"
+    # command pyenv rehash 2>/dev/null
+    pyenv() {
+        local command
+        command="${1:-}"
+        if [ "$#" -gt 0 ]; then
+            shift
+        fi
+
+        case "$command" in
+            activate|deactivate|rehash|shell)
+                eval "$(pyenv "sh-$command" "$@")";;
+            *)
+                command pyenv "$command" "$@";;
+        esac
+    }
+
+    # pyenv-virtualenv plugin
+    export PATH="${pyenv_root}/plugins/pyenv-virtualenv/shims:${PATH}";
+    export PYENV_VIRTUALENV_INIT=1;
+    _pyenv_virtualenv_hook() {
+        local ret=$?
+        if [ -n "$VIRTUAL_ENV" ]; then
+            eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet || true)" || true
+        else
+            eval "$(pyenv sh-activate --quiet || true)" || true
+        fi
+        return $ret
+    };
+    if ! [[ "${PROMPT_COMMAND}" =~ _pyenv_virtualenv_hook ]]; then
+        PROMPT_COMMAND="_pyenv_virtualenv_hook;${PROMPT_COMMAND}";
+    fi
+fi
+unset pyenv_root
+
+
+### rust
+export PATH="${HOME}/.cargo/bin:${PATH}"
+
+
+### texlive
+texlive_root="${HOME}/.texlive"
+if [ -d "${texlive_root}" ]; then
+    export PATH="${texlive_root}/bin/x86_64-linux:${PATH}"
+fi
+unset texlive_root
+
+
+### .bash_aliases
+[[ -f ${HOME}/.bash_aliases ]] && source ${HOME}/.bash_aliases
+
+
+## source useful files
+[[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion || true
+[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash || true
 

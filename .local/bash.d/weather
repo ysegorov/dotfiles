@@ -1,3 +1,0 @@
-w() {
-    curl wttr.in/"${1:-zelenograd}"
-}
