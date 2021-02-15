@@ -1,9 +1,0 @@
-
-workspace_layout tabbed
-smart_gaps on
-gaps inner 10
-# gaps outer 5
-
-default_border normal
-default_floating_border normal
-hide_edge_borders smart
