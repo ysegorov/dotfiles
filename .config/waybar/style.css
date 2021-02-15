@@ -74,6 +74,9 @@
     padding-right: 10px;
 }
 
+.modules-right {
+    min-width: 1100px;
+}
 .modules-right widget:nth-child(2n) label {
     background-color: @bg1;
 }
@@ -111,6 +114,7 @@
 #clock {
     color: @cyan;
     padding-left: 20px;
+    background-color: @bg0;
 }
 
 #cpu {
@@ -169,6 +173,7 @@
 
 #tray {
     background-color: @bg0;
+    /* min-width: 40px; */
 }
 
 #custom-waybar-language {
@@ -189,7 +194,16 @@
 }
 
 #window {
-    font-weight: bold;
+    padding: 0 10px 0 10px;
+    /* margin-right: 5px; */
+    color: @gray5;
+    background-color: @blue0;
+}
+window#waybar.empty #window {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    border-right: 3px solid @blue0;
 }
 
 #workspaces button {

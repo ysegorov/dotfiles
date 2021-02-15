@@ -12,16 +12,17 @@
     "modules-center": [
     ],
     "modules-right": [
-        "tray",
+        "sway/window",
         "idle_inhibitor",
         "custom/waybar-language",
         "network",
         "memory",
         "cpu",
         "temperature",
-        "pulseaudio",
-        "backlight",
+        // "pulseaudio",
+        // "backlight",
         "battery",
+        "tray",
         "clock"
     ],
     "sway/workspaces": {
@@ -43,7 +44,16 @@
     },
     "sway/window": {
         "format": "{}",
-        "max-length": 120
+        "max-length": 60
+    },
+    // NB. to check
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Papirus",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
     },
     "tray": {
         "icon-size": 21,
@@ -119,7 +129,7 @@
         },
         "format": " {icon} {capacity}%",
         "format-discharging": "{icon} {capacity}%",
-        "format-full": " {capacity}%",
+        "format-full": "",
         "format-icons": [
             "",
             "",
