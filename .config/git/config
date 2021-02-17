@@ -78,3 +78,5 @@ autoseupmerge = always
 # another branch was merged. I find this easier to understand and read in
 # the log.
 mergeoptions = --no-commit --no-ff
+[init]
+	defaultBranch = main
