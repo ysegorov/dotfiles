@@ -98,13 +98,13 @@ unset pgenv_root
 
 
 ### nodenv: git clone https://github.com/nodenv/nodenv.git ~/.local/
-nodenv_root="$HOME/.local/nodenv"
+export NODENV_ROOT="$HOME/.local/nodenv"
 
-if [ -d "${nodenv_root}" ]; then
-    export PATH="${nodenv_root}/shims:${nodenv_root}/bin:${PATH}"
+if [ -d "${NODENV_ROOT}" ]; then
+    export PATH="${NODENV_ROOT}/shims:${NODENV_ROOT}/bin:${PATH}"
     # eval "$(nodenv init -)"
     export NODENV_SHELL=bash
-    source "${nodenv_root}/completions/nodenv.bash"
+    source "${NODENV_ROOT}/completions/nodenv.bash"
     # command nodenv rehash 2>/dev/null
     nodenv() {
         local command
@@ -121,23 +121,22 @@ if [ -d "${nodenv_root}" ]; then
         esac
     }
 fi
-unset nodenv_root
 
 
 ### pyenv: git clone https://github.com/pyenv/pyenv.git ~/.local/
 ###        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.local/pyenv/plugins/
-pyenv_root="${HOME}/.local/pyenv"
+export PYENV_ROOT="${HOME}/.local/pyenv"
 
-if [ -d "${pyenv_root}" ]; then
-    # export PATH="$pyenv_root/bin:$PATH"
+if [ -d "${PYENV_ROOT}" ]; then
+    # export PATH="$PYENV_ROOT/bin:$PATH"
     # if command -v pyenv 1>/dev/null 2>&1; then
     #     eval "$(pyenv init -)"
     #     eval "$(pyenv virtualenv-init -)"
     # fi
 
-    export PATH="${pyenv_root}/shims:${pyenv_root}/bin:${PATH}"
+    export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
     export PYENV_SHELL=bash
-    source "${pyenv_root}/completions/pyenv.bash"
+    source "${PYENV_ROOT}/completions/pyenv.bash"
     # command pyenv rehash 2>/dev/null
     pyenv() {
         local command
@@ -155,7 +154,7 @@ if [ -d "${pyenv_root}" ]; then
     }
 
     # pyenv-virtualenv plugin
-    export PATH="${pyenv_root}/plugins/pyenv-virtualenv/shims:${PATH}";
+    export PATH="${PYENV_ROOT}/plugins/pyenv-virtualenv/shims:${PATH}";
     export PYENV_VIRTUALENV_INIT=1;
     _pyenv_virtualenv_hook() {
         local ret=$?
@@ -170,7 +169,6 @@ if [ -d "${pyenv_root}" ]; then
         PROMPT_COMMAND="_pyenv_virtualenv_hook;${PROMPT_COMMAND}";
     fi
 fi
-unset pyenv_root
 
 
 ### rust
