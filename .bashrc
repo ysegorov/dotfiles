@@ -29,8 +29,8 @@ unset HISTFILE
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 
-### LS_COLORS: yaourt -S lscolors-git
-[[ -f /usr/share/LS_COLORS/dircolors.sh ]] && source /usr/share/LS_COLORS/dircolors.sh
+### nord-dircolors
+test -r ~/.config/nord-dircolors/src/dir_colors && eval $(dircolors ~/.config/nord-dircolors/src/dir_colors)
 
 
 ### stardict: yaourt -S sdcv
@@ -52,14 +52,26 @@ esac
 # gruvbox colors for terminal supporting 24 bit colors
 color_reset="\033[0m"
 color_prefix="\033[38;2;"
-red="${color_prefix}251;73;52m"
-green="${color_prefix}184;187;38m"
-aqua="${color_prefix}142;192;124m"
-yellow="${color_prefix}250;189;47m"
-blue="${color_prefix}131;165;152m"
-magenta="${color_prefix}211;134;155m"
-orange="${color_prefix}254;128;25m"
-neutro="${color_prefix}235;219;178m"
+
+# gruvbox_dark
+# red="${color_prefix}251;73;52m"
+# green="${color_prefix}184;187;38m"
+# aqua="${color_prefix}142;192;124m"
+# yellow="${color_prefix}250;189;47m"
+# blue="${color_prefix}131;165;152m"
+# magenta="${color_prefix}211;134;155m"
+# orange="${color_prefix}254;128;25m"
+# neutro="${color_prefix}235;219;178m"
+
+# nord
+red="${color_prefix}191;97;106m"
+green="${color_prefix}163;190;140m"
+yellow="${color_prefix}235;203;139m"
+aqua="${color_prefix}129;161;193m"
+blue="${color_prefix}94;129;172m"
+magenta="${color_prefix}180;142;173m"
+orange="${color_prefix}208;135;112m"
+neutro="${color_prefix}136;192;208m"
 
 vcs_status() {
     GIT_PS1_SHOWDIRTYSTATE=1
@@ -79,7 +91,7 @@ retval() {
 # function setting prompt string
 bash_prompt() {
     local host_color=$(if [[ $UID == 0 ]]; then echo "$red"; else echo "$neutro"; fi)
-    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$aqua\]\"; else echo \"\[$orange\]\"; fi)\w"
+    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$aqua\]\"; else echo \"\[$yellow\]\"; fi)\w"
 
     PS1="\$(retval)\[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \[\$(vcs_status)\] \[$color_reset\]\$ "
 }
