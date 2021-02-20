@@ -2,7 +2,7 @@
 
   set my_configdir      = ~/.config/neomutt
   set my_cachedir       = ~/.cache/neomutt
-  set my_tmpdir         = ~/_tmp/neomutt
+  set my_tmpdir         = ~/tmp/neomutt
 
   set askcc
 unset beep
