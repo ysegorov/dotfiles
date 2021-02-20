@@ -14,12 +14,9 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/plugged')
 
 " themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'jnurmine/Zenburn'
-Plug 'morhetz/gruvbox'
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 Plug 'mkarmona/colorsbox'
-Plug 'mhartington/oceanic-next'
+Plug 'arcticicestudio/nord-vim'
 
 " syntax
 Plug 'sheerun/vim-polyglot'
@@ -29,17 +26,7 @@ Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
-Plug '~/_dev/vim-yaggy'
-" Plug 'scrooloose/syntastic'
-" Plug 'nvie/vim-flake8'
-" Plug 'lunaru/vim-less'
-" Plug 'mustache/vim-mustache-handlebars'
-" Plug 'othree/html5.vim'
-" Plug 'moll/vim-node'
-" Plug 'vim-scripts/JSON.vim'
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'raichoo/purescript-vim'
-" Plug 'elixir-lang/vim-elixir'
+Plug '~/dev/vim-yaggy'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 " utils
@@ -54,6 +41,9 @@ Plug 'terryma/vim-expand-region'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+
+" lightline
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -198,56 +188,10 @@ let maplocalleader = " "
 " color theme
 set term=xterm-256color
 set termguicolors
-" set t_Co=256
 set bg=dark
-" let g:gruvbox_bold=0
-" let g:gruvbox_italic=0
-" let g:gruvbox_underline=0
-" let g:gruvbox_undercurl=0
-" let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_improved_strings=0
-" color gruvbox
 
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_enable_italic = 0
-let g:gruvbox_material_disable_italic_comment = 1
-" colorscheme gruvbox-material
-" color xoria256
-" color zenburn
-" let g:solarized_italic=0
-" let g:solarized_bold=0
-" color solarized
-" colorscheme colorsbox-material
-colorscheme OceanicNext
+colorscheme nord
 
-
-" console cursor
-if &term =~ "xterm\\|rxvt"
-    " use an orange cursor in insert mode
-    let &t_SI = "\<Esc>]12;darkred\x7"
-    let &t_SR = "\<Esc>]12;darkblue\x7"
-    " use a red cursor otherwise
-    let &t_EI = "\<Esc>]12;red\x7"
-    silent !echo -ne "\033]12;red\007"
-    " reset cursor when vim exits
-    autocmd VimLeave * silent !echo -ne "\033]112\007"
-    " use \003]12;gray\007 for gnome-terminal
-endif
-if &term =~ '^xterm'
-    " solid underscore
-    " let &t_SI .= "\<Esc>[6 q"
-    " solid block
-    let &t_EI .= "\<Esc>[2 q"
-    " 1 or 0 -> blinking block
-    " 3 -> blinking underscore
-    " Recent versions of xterm (282 or above) also support
-    " 5 -> blinking vertical bar
-    " 6 -> solid vertical bar
-endif
-
-
-" gui cursor
-set gcr=a:block
 
 " mode aware cursors
 set gcr+=o:hor50-Cursor
@@ -258,113 +202,6 @@ set gcr+=c:CommandCursor
 set gcr+=v-ve:VisualCursor
 
 set gcr+=a:blinkon0
-
-hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-" hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
-
-
-" status line
-" set statusline=
-" set statusline+=%7*\[%n]                                  "buffernr
-" set statusline+=%1*\ %<%F\                                "File+path
-" set statusline+=%2*\ %y\                                  "FileType
-" set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-" set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-" set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-" set statusline+=%5*\ %{&spelllang}\                       "Spellanguage?
-" set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-" set statusline+=%9*\ col:%03c\                            "Colnr
-" set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
-
-"
-" https://github.com/blaenk/dots/blob/master/vim/.vimrc
-"
-" status line function
-function! Status(winnr)
-    let head = ''
-    let stat = ''
-    let active = winnr() == a:winnr
-    let buffer = winbufnr(a:winnr)
-
-    let modified = getbufvar(buffer, '&modified')
-    let readonly = getbufvar(buffer, '&ro')
-    let fname = bufname(buffer)
-
-    function! Color(active, num, content)
-        if a:active
-            return '%' . a:num . '*' . a:content . '%*'
-        else
-            return a:content
-        endif
-    endfunction
-
-    " column
-    let stat .= '%1*' . (col(".") / 100 >= 1 ? '%v ' : ' %2v ') . '%*'
-
-    " file
-    let stat .= Color(active, 4, active ? ' »' : ' «')
-    let stat .= ' %<'
-
-    if fname == '__Gundo__'
-        let stat .= 'Gundo'
-    elseif fname == '__Gundo_Preview__'
-        let stat .= 'Gundo Preview'
-    else
-        let stat .= '%f'
-    endif
-
-    let stat .= ' ' . Color(active, 4, active ? '«' : '»')
-
-    " file modified
-    let stat .= Color(active, 2, modified ? ' +' : '')
-
-    " read only
-    let stat .= Color(active, 2, readonly ? ' ‼' : '')
-
-    " paste
-    if active && &paste
-        let stat .= ' %2*' . 'P' . '%*'
-    endif
-
-    " right side
-    let stat .= '%='
-
-    " git branch
-    if exists('*fugitive#head')
-        let head = fugitive#head()
-
-        if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
-        call FugitiveDetect(getcwd())
-        let head = fugitive#head()
-        endif
-    endif
-
-    if !empty(head)
-        let stat .= Color(active, 3, ' ← ') . head . ' '
-    endif
-
-    return stat
-endfunction
-
-" status line autocmd
-function! SetStatus()
-    for nr in range(1, winnr('$'))
-        call setwinvar(nr, '&statusline', '%!Status('.nr.')')
-    endfor
-endfunction
-
-augroup status
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
-augroup END
-
-" status line colors
-hi User1 ctermfg=33  guifg=#268bd2  ctermbg=15 guibg=#fdf6e3 gui=bold
-hi User2 ctermfg=125 guifg=#d33682  ctermbg=7  guibg=#eee8d5 gui=bold
-hi User3 ctermfg=64  guifg=#719e07  ctermbg=7  guibg=#eee8d5 gui=bold
-hi User4 ctermfg=37  guifg=#2aa198  ctermbg=7  guibg=#eee8d5 gui=bold
 
 
 " folding
@@ -632,6 +469,21 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
+" lightline
+set noshowmode
+let g:lightline = {
+    \ 'colorscheme': 'one',
+    \ 'active': {
+        \ 'left': [ [ 'mode', 'paste', 'gitstatus' ],
+        \           [ 'readonly', 'filename', 'modified' ] ],
+        \ 'right': [ [ 'lineinfo' ],
+        \            [ 'percent' ],
+        \            [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \},
+    \ 'component': {
+        \ 'gitstatus': ' %{FugitiveHead()}'
+    \ }
+\}
 
 " expand region
 vmap v <Plug>(expand_region_expand)
