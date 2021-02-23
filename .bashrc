@@ -98,7 +98,9 @@ bash_prompt() {
 
 [[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
 bash_prompt
-unset bash_prompt
+unset -f bash_prompt
+
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 
 
 ### pgenv: git clone https://github.com/theory/pgenv.git ~/

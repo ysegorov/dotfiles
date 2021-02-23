@@ -1,6 +1,5 @@
 
 alias e="$EDITOR"
-# requires colordiff package
 alias grep='grep --color=auto'
 alias more='less'
 alias mkdir='mkdir -p -v'
@@ -22,10 +21,11 @@ alias http-serve='python -m http.server'
 alias htpasswd='openssl passwd -apr1'
 alias ip='ip -color -brief'
 alias sudo='sudo -E '
-alias tree='tree -a -I .git --dirsfirst'
+alias tree='tree -a -C -I .git --dirsfirst'
 alias ll='ls -l'
 alias utc='env TZ=UTC date'
 
+# install colordiff package
 command -v colordiff &>/dev/null && alias diff='colordiff'
 command -v locate &>/dev/null && alias locate='locate -i'
 command -v rsync &>/dev/null && alias rsync='rsync --verbose --archive --info=progress2 --human-readable --partial'
@@ -113,5 +113,61 @@ tmpd() {
     cd "$(mktemp -d -t "${1:-tmp}.XXXXXXXXXX")"
 }
 
+
+# dev
+dev () {
+
+    shopt -s nullglob globstar
+
+    if [ "$#" -gt 0 ]; then q="-q $@"; else q=""; fi
+
+    p1=$(fd -t d -d 1 -a . /home/dotprom/dev)
+    p2=$(fd -t d -d 1 -a . "${HOME}/dev")
+
+    folder=$(printf '%s\n' "${p1[@]}" "${p2[@]}" | fzf --select-1 --reverse --no-bold -d "/" -n -1 --with-nth=-1 $q)
+
+    [[ -n $folder ]] || return 1
+
+    cd ${folder}
+
+}
+
+# nnn
+n() {
+
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return 1
+    fi
+
+    LC_COLLATE="C"
+
+    COLORS=4235
+    FCOLORS='c1e2272e006033f7c6d6abc4'
+    FIFO=${XDG_RUNTIME_DIR}/nnn.fifo
+    OPENER=nuke
+
+    BMS="d:~/dev;g:~/git;D:~/downloads"
+
+    html='h:_w3m -dump $nnn'
+    mupdf='p:-_mupdf $nnn*'
+    leafpad='l:_|leafpad $nnn'
+    chmod_x='x:_chmod u+x $nnn'
+    preview='w:preview-tui'
+    odt2txt='d:-_odt2txt $nnn'
+    imv='i:-_imv $nnn*'
+    bat=';:-_bat --paging always $nnn*'
+
+    PLUG="${preview};${chmod_x};${mupdf};${leafpad};${html};${odt2txt};${imv};${bat}"
+
+    env LC_COLLATE="C" \
+        NNN_COLORS="${COLORS}" \
+        NNN_FCOLORS="${FCOLORS}" \
+        NNN_FIFO="${FIFO}" \
+        NNN_OPENER="${OPENER}" \
+        NNN_BMS="${BMS}" \
+        NNN_PLUG="${PLUG}" \
+        nnn -A -c -d -H
+}
 
 # vim: ft=sh:
