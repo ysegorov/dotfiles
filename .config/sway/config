@@ -7,8 +7,8 @@ set $down j
 set $up k
 set $right l
 
-set $term alacritty
-# set $term kitty
+# set $term kitty --single-instance
+set $term kitty
 # set $browser chromium
 set $browser firefox-esr
 set $chrome google-chrome-stable
