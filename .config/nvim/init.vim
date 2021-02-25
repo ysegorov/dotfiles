@@ -31,6 +31,7 @@ set visualbell
 set mouse=a
 set number
 set numberwidth=1
+set signcolumn=yes
 set cursorline
 set norelativenumber
 set colorcolumn=81
@@ -47,6 +48,7 @@ set tabstop=4
 set shiftwidth=0
 set softtabstop=-1
 
+set hidden
 set updatetime=100
 
 set nowrap
@@ -57,6 +59,7 @@ set history=1000
 set undolevels=1000
 set undofile
 
+set cmdheight=2
 set laststatus=2
 
 set encoding=utf-8
@@ -98,7 +101,8 @@ let g:ale_linters = {
 \   'vue': ['eslint']
 \}
 let g:ale_fixers = {
-\    'python': ['remove_trailing_lines', 'trim_whitespace', 'yapf'],
+\    '*': ['remove_trailing_lines', 'trim_whitespace'],
+\    'python': ['yapf'],
 \    'javascript': ['prettier'],
 \    'typescript': ['prettier'],
 \    'css': ['prettier'],
@@ -164,6 +168,10 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
 autocmd FileType python setlocal completeopt-=preview
+
+autocmd FileType scss setlocal iskeyword+=@-@
+
+cnoremap help vertical help
 
 
 " hot keys
