@@ -104,7 +104,7 @@ mode $mode_resize {
         Escape mode default
     }
 }
-bindsym $mod+r mode $mode_resize
+bindsym --to-code $mod+r mode $mode_resize
 
 #
 # System exit
@@ -124,7 +124,7 @@ mode $mode_system {
         Escape mode default
     }
 }
-bindsym $mod+q mode $mode_system
+bindsym --to-code $mod+q mode $mode_system
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -133,20 +133,22 @@ bindsym $mod+Return exec $term
 # bindsym $mod+a exec $browser --user-data-dir=$HOME/.config/chromium.a
 # bindsym $mod+b exec $browser --user-data-dir=$HOME/.config/chromium.b --proxy-server=socks5://127.0.0.1:12021
 # bindsym $mod+o exec $browser --user-data-dir=$HOME/.config/chromium.d --proxy-server=socks5://127.0.0.1:17000
-bindsym $mod+a exec $browser --no-remote -P a
-bindsym $mod+b exec $browser --no-remote -P b
-bindsym $mod+o exec $browser --no-remote -P c
-bindsym $mod+i exec $chrome --user-data-dir=$HOME/.config/chrome.ivi --incognito --app=https://ivi.ru
-bindsym $mod+m exec $chrome --user-data-dir=$HOME/.config/chrome.spotify --incognito --app=https://open.spotify.com
+bindsym --to-code {
+    $mod+a exec $browser --no-remote -P a
+    $mod+b exec $browser --no-remote -P b
+    $mod+o exec $browser --no-remote -P c
+    $mod+i exec $chrome --user-data-dir=$HOME/.config/chrome.ivi --incognito --app=https://ivi.ru
+    $mod+m exec $chrome --user-data-dir=$HOME/.config/chrome.spotify --incognito --app=https://open.spotify.com
+}
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym --to-code $mod+Shift+q kill
 
 # Start your launcher
 for_window [app_id="^dmenu$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-bindsym $mod+d exec $dmenu
+bindsym --to-code $mod+d exec $dmenu
 for_window [app_id="^pmenu$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-bindsym $mod+p exec $pmenu
+bindsym --to-code $mod+p exec $pmenu
 
 # screenshot using PrtSc key
 bindsym Print exec take-screenshot
@@ -175,7 +177,7 @@ bindsym XF86MonBrightnessUp exec light up
 floating_modifier $mod normal
 
 # Reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym --to-code $mod+Shift+c reload
 
 # $mod+comma
 # $mod+period
@@ -197,9 +199,9 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
-bindsym $mod+bracketleft workspace number 11
-bindsym $mod+bracketright workspace number 12
-bindsym $mod+equal workspace number 13
+bindsym --to-code $mod+bracketleft workspace number 11
+bindsym --to-code $mod+bracketright workspace number 12
+bindsym --to-code $mod+equal workspace number 13
 # bindsym $mod+F1 workspace number 11
 # bindsym $mod+F2 workspace number 12
 # bindsym $mod+F3 workspace number 13
@@ -212,7 +214,7 @@ bindsym $mod+equal workspace number 13
 # bindsym $mod+F10 workspace number 20
 # bindsym $mod+F11 workspace number 21
 # bindsym $mod+F12 workspace number 22
-bindsym $mod+z workspace back_and_forth
+bindsym --to-code $mod+z workspace back_and_forth
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -224,9 +226,9 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-bindsym $mod+Shift+bracketleft move container to workspace number 11
-bindsym $mod+Shift+bracketright move container to workspace number 12
-bindsym $mod+Shift+equal move container to workspace number 13
+bindsym --to-code $mod+Shift+bracketleft move container to workspace number 11
+bindsym --to-code $mod+Shift+bracketright move container to workspace number 12
+bindsym --to-code $mod+Shift+equal move container to workspace number 13
 # bindsym $mod+Shift+F1 move container to workspace number 11
 # bindsym $mod+Shift+F2 move container to workspace number 12
 # bindsym $mod+Shift+F3 move container to workspace number 13
@@ -268,11 +270,11 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+h splith
 # bindsym $mod+v splitv
 
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+e layout toggle split
 
-bindsym $mod+f fullscreen
+bindsym --to-code $mod+f fullscreen
 
 bindsym $mod+Shift+space floating toggle
 
@@ -334,4 +336,3 @@ include /etc/sway/config.d/*
 
 exec "systemctl --user start sway-session.target"
 exec load-keys
-
