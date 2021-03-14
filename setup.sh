@@ -77,6 +77,7 @@ link ".config/systemd/user/mbsync.service"
 link ".config/systemd/user/mbsync.timer"
 link ".config/systemd/user/pgenv.service"
 link ".config/systemd/user/nginx.service"
+link ".config/systemd/user/sway-inactive-window-transparency.service"
 
 echo "==============================="
 echo "   Setting up \$HOME links...   "
@@ -116,6 +117,7 @@ systemctl_enable "waybar.service"
 systemctl_enable "tunnel-linode.service"
 systemctl_enable "pgenv.service"
 systemctl_enable "nginx.service"
+systemctl_enable "sway-inactive-window-transparency.service"
 systemctl_enable "mbsync.timer"
 
 
