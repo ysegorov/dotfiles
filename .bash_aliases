@@ -170,4 +170,15 @@ n() {
         nnn -A -c -d -H
 }
 
+
+vim() {
+    echo "oops, use 'e' or 'nvim'!"
+    return 1
+}
+
+dig() {
+    echo "oops, use 'drill'!"
+    return 1
+}
+
 # vim: ft=sh:

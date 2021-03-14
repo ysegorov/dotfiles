@@ -7,5 +7,6 @@ set editing-mode vi
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
 
-set echo-control-characters off
+# set echo-control-characters off
 set show-all-if-ambiguous on
+# set show-mode-in-prompt on

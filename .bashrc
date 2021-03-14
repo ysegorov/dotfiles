@@ -80,7 +80,7 @@ vcs_status() {
     GIT_PS1_SHOWCOLORHINTS=1
 
     if [ -z "$1" ]; then curdir="$(pwd)"; else curdir="$1"; fi
-    if [ -d "$curdir/.git" ]; then echo "git:$(__git_ps1 %s)"; return 0; fi
+    if [ -d "$curdir/.git" ]; then echo "g:$(__git_ps1 %s)"; return 0; fi
     if [ "$curdir" != '/' ]; then vcs_status $(dirname "$curdir"); fi
 }
 
@@ -204,4 +204,3 @@ unset texlive_root
 ## source useful files
 [[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion || true
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash || true
-
