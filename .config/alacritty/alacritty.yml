@@ -53,7 +53,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -303,15 +303,15 @@ cursor:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  vi_mode_style: Underline
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  unfocused_hollow: false
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  thickness: 0.35
+  thickness: 0.25
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -349,7 +349,7 @@ live_config_reload: true
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -359,9 +359,9 @@ live_config_reload: true
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
-  #url:
+  url:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
@@ -381,7 +381,7 @@ live_config_reload: true
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    #modifiers: None
+    modifiers: Control
 
 # Mouse bindings
 #
@@ -522,6 +522,15 @@ key_bindings:
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
   - { key: Insert,   mods: Shift,         action: Paste            }
+  - { key: S,        mods: Control|Shift, action: PasteSelection   }
+  - { key: PageUp,   mods: Control|Shift, action: ScrollPageUp     }
+  - { key: PageDown, mods: Control|Shift, action: ScrollPageDown   }
+  - { key: Home,     mods: Control|Shift, action: ScrollToTop      }
+  - { key: End,      mods: Control|Shift, action: ScrollToBottom   }
+  - { key: Up,       mods: Control|Shift, action: ScrollLineUp     }
+  - { key: Down,     mods: Control|Shift, action: ScrollLineDown   }
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: W,        mods: Control|Shift, action: Quit             }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
