@@ -3,6 +3,10 @@
 # dotprom at 4int.ru
 ###
 
+Create Both
+Expunge Both
+SyncState *
+
 IMAPAccount passware
 Host imap.gmail.com
 User dotprom@4int.ru
@@ -19,29 +23,29 @@ Path ~/.mail/passware/
 Inbox ~/.mail/passware/Inbox
 
 Channel passware-default
-Master :passware-remote:
-Slave :passware-local:Inbox
+Far :passware-remote:
+Near :passware-local:Inbox
 #Patterns INBOX
 
 Channel passware-sent
-Master :passware-remote:"[Gmail]/Sent Mail"
-slave  :passware-local:Sent
+Far :passware-remote:"[Gmail]/Sent Mail"
+Near  :passware-local:Sent
 
 Channel passware-trash
-Master :passware-remote:"[Gmail]/Trash"
-slave  :passware-local:Trash
+Far :passware-remote:"[Gmail]/Trash"
+Near  :passware-local:Trash
 
 Channel passware-archive
-Master :passware-remote:"[Gmail]/All Mail"
-slave  :passware-local:All
+Far :passware-remote:"[Gmail]/All Mail"
+Near  :passware-local:All
 
 Channel passware-drafts
-Master :passware-remote:"[Gmail]/Drafts"
-slave  :passware-local:Drafts
+Far :passware-remote:"[Gmail]/Drafts"
+Near  :passware-local:Drafts
 
 Channel passware-junk
-Master :passware-remote:"[Gmail]/Spam"
-slave  :passware-local:Junk
+Far :passware-remote:"[Gmail]/Spam"
+Near  :passware-local:Junk
 
 Group passware
 Channel passware-default
@@ -50,10 +54,6 @@ Channel passware-archive
 Channel passware-sent
 Channel passware-junk
 Channel passware-drafts
-
-Create Both
-Expunge Both
-SyncState *
 
 
 ###
@@ -76,29 +76,29 @@ Path ~/.mail/personal/
 Inbox ~/.mail/personal/Inbox
 
 Channel personal-default
-Master :personal-remote:
-Slave :personal-local:Inbox
+Far :personal-remote:
+Near :personal-local:Inbox
 #Patterns INBOX
 
 Channel personal-sent
-Master :personal-remote:"[Gmail]/Sent Mail"
-slave  :personal-local:Sent
+Far :personal-remote:"[Gmail]/Sent Mail"
+Near  :personal-local:Sent
 
 Channel personal-trash
-Master :personal-remote:"[Gmail]/Trash"
-slave  :personal-local:Trash
+Far :personal-remote:"[Gmail]/Trash"
+Near  :personal-local:Trash
 
 Channel personal-archive
-Master :personal-remote:"[Gmail]/All Mail"
-slave  :personal-local:All
+Far :personal-remote:"[Gmail]/All Mail"
+Near  :personal-local:All
 
 Channel personal-drafts
-Master :personal-remote:"[Gmail]/Drafts"
-slave  :personal-local:Drafts
+Far :personal-remote:"[Gmail]/Drafts"
+Near  :personal-local:Drafts
 
 Channel personal-junk
-Master :personal-remote:"[Gmail]/Spam"
-slave  :personal-local:Junk
+Far :personal-remote:"[Gmail]/Spam"
+Near  :personal-local:Junk
 
 Group personal
 Channel personal-default
@@ -107,7 +107,3 @@ Channel personal-archive
 Channel personal-sent
 Channel personal-junk
 Channel personal-drafts
-
-Create Both
-Expunge Both
-SyncState *
