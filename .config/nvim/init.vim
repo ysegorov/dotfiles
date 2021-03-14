@@ -24,6 +24,10 @@ call plug#begin($VIMCACHE . 'plugged')
 
     Plug 'mhinz/vim-signify'
 
+    Plug 'farmergreg/vim-lastplace'
+
+    Plug '~/dev/vim-yaggy'
+
 call plug#end()
 
 set title
@@ -35,8 +39,11 @@ set signcolumn=yes
 set cursorline
 set norelativenumber
 set colorcolumn=81
-set ignorecase smartcase
+set ignorecase
+set smartcase
 set infercase
+set hlsearch
+set incsearch
 set showmatch
 set matchtime=8
 set matchpairs+=<:>
@@ -47,13 +54,17 @@ set expandtab
 set tabstop=4
 set shiftwidth=0
 set softtabstop=-1
+set shiftround
 
 set hidden
 set updatetime=100
 
+set scrolloff=4
+set sidescrolloff=10
+
 set nowrap
-set textwidth=80
-set linebreak
+" set textwidth=80
+" set linebreak
 
 set history=1000
 set undolevels=1000
@@ -145,9 +156,9 @@ nmap <Leader>c <Plug>CommentaryLine
 xmap <Leader>c <Plug>Commentary
 
 " fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>gd :Git diff<CR>
+nnoremap <leader>gb :Git blame<CR>
 
 " deoplete
 " let g:deoplete#enable_at_startup = 1
@@ -168,8 +179,12 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
 autocmd FileType python setlocal completeopt-=preview
+autocmd FileType scss setlocal iskeyword+=@-@ tabstop=2
+autocmd FileType javascript,css,html setlocal tabstop=2
 
-autocmd FileType scss setlocal iskeyword+=@-@
+autocmd BufNewFile,BufRead *.rst setlocal textwidth=79 linebreak
+autocmd BufNewFile,BufRead *.md setlocal textwidth=79 linebreak
+autocmd BufNewFile,BufRead *.handlebars,*.hbs,*.mustache setf mustache
 
 cnoremap help vertical help
 
@@ -177,10 +192,43 @@ cnoremap help vertical help
 " hot keys
 " strip trailing whitespace
 map <leader>ts :%s/\s\+$//e<CR>
+
+" drop hightlight search result
+noremap <leader><leader> :nohlsearch<CR>
+
+" not jump on star, only highlight
+nnoremap * *N
+
 " F2 - save buffer
 nmap <F2> :w<CR>
 vmap <F2> <esc>:w<CR>i
 imap <F2> <esc>:w<CR>i
 
+" keep visual selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" yank/delete to clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+" paste from clipboard
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+" window commands
+nnoremap <silent> <leader>v :wincmd v<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent> <leader>j :wincmd j<CR>
+nnoremap <silent> <leader>k :wincmd k<CR>
+nnoremap <silent> <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>+ :wincmd +<CR>
+nnoremap <silent> <leader>- :wincmd -<CR>
+nnoremap <silent> <leader>cj :wincmd j<CR>:close<CR>
+nnoremap <silent> <leader>ck :wincmd k<CR>:close<CR>
+nnoremap <silent> <leader>ch :wincmd h<CR>:close<CR>
+nnoremap <silent> <leader>cl :wincmd l<CR>:close<CR>
+nnoremap <silent> <leader>cw :close<CR>
 
 set secure
