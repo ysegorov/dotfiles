@@ -10,9 +10,9 @@ set $right l
 # set $term kitty --single-instance
 set $term kitty
 # set $term alacritty
-# set $browser chromium
 set $browser firefox-esr
-set $chrome google-chrome-stable
+set $browser2 chromium
+# set $chrome google-chrome-stable
 
 set $lock "swaylock -f -c 000000"
 
@@ -136,15 +136,15 @@ bindsym --to-code $mod+q mode $mode_system
 bindsym $mod+Return exec $term
 
 # browser
-# bindsym $mod+a exec $browser --user-data-dir=$HOME/.config/chromium.a
-# bindsym $mod+b exec $browser --user-data-dir=$HOME/.config/chromium.b --proxy-server=socks5://127.0.0.1:12021
-# bindsym $mod+o exec $browser --user-data-dir=$HOME/.config/chromium.d --proxy-server=socks5://127.0.0.1:17000
 bindsym --to-code {
     $mod+a exec $browser --no-remote -P a
     $mod+b exec $browser --no-remote -P b
     $mod+o exec $browser --no-remote -P c
-    $mod+i exec $chrome --user-data-dir=$HOME/.config/chrome.ivi --incognito --app=https://ivi.ru
-    $mod+m exec $chrome --user-data-dir=$HOME/.config/chrome.spotify --incognito --app=https://open.spotify.com
+    $mod+Shift+a exec $browser2 --user-data-dir=$HOME/.config/chromium.a
+    $mod+Shift+b exec $browser2 --user-data-dir=$HOME/.config/chromium.b --incognito --proxy-server=socks5://127.0.0.1:12021
+    $mod+Shift+o exec $browser2 --user-data-dir=$HOME/.config/chromium.d --proxy-server=socks5://127.0.0.1:17000
+    # $mod+i exec $chrome --user-data-dir=$HOME/.config/chrome.ivi --incognito --app=https://ivi.ru
+    # $mod+m exec $chrome --user-data-dir=$HOME/.config/chrome.spotify --incognito --app=https://open.spotify.com
 }
 
 # Kill focused window
