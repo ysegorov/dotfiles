@@ -55,6 +55,9 @@ alias psql='psql -h localhost'
 alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.datname), pg_size_pretty(pg_database_size(pg_database.datname)) FROM pg_database ORDER BY pg_database_size DESC;"'
 
 
+# haskell
+alias ghci='ghci -v0 -ignore-dot-ghci -ghci-script $HOME/.local/ghc/ghci.conf'
+
 # rust
 _rr() {
     if [ -f "$1.rs" ] ; then
