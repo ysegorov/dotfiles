@@ -131,6 +131,9 @@ let mapleader=","
 
 let g:python3_host_prog='~/.local/pyenv/versions/neovim_py3/bin/python'
 
+" netrw
+let g:netrw_dirhistmax  = 0
+
 " ale
 "    NB. flake8 must be in PATH for python linting to work
 let g:ale_linters = {
