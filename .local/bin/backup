@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd $HOME
-rsync -a -v --delete --exclude=music --exclude=videos --exclude=.cache --exclude=.npm . /mnt/backup/thinkpad.t14/home.egorov
+rsync -a -v --delete --exclude=vm --exclude=music --exclude=videos --exclude=.cache --exclude=.npm . /mnt/backup/thinkpad.t14/home.egorov
