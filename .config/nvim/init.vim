@@ -11,6 +11,11 @@ call plug#begin($VIMCACHE . 'plugged')
 
     Plug 'arcticicestudio/nord-vim'
     Plug 'mhartington/oceanic-next'
+    " Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+    " Plug 'lifepillar/vim-solarized8'
+    " Plug 'morhetz/gruvbox'
+    " Plug 'jnurmine/zenburn'
+    " Plug 'mkarmona/colorsbox'
 
     Plug 'dense-analysis/ale'
     " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -70,7 +75,7 @@ set history=1000
 set undolevels=1000
 set undofile
 
-set cmdheight=2
+" set cmdheight=2
 set laststatus=2
 
 set encoding=utf-8
@@ -92,9 +97,32 @@ set wildignore+=node_modules
 set wildignore+=env
 set wildignore+=bower_components
 
+" let g:gruvbox_material_background = 'medium'
+" let g:gruvbox_material_cursor = 'green'
+" let g:gruvbox_material_enable_italic = 0
+" let g:gruvbox_material_disable_italic_comment = 0
+" let g:gruvbox_material_enable_bold = 0
+" let g:gruvbox_material_lightline_disable_bold = 0
+" let g:gruvbox_material_visual = 'reverse'
+
+" let g:gruvbox_bold = '0'
+" let g:gruvbox_italic = '0'
+" let g:gruvbox_underline = '0'
+" let g:gruvbox_undercurl = '0'
+" let g:gruvbox_italicize_comments = '0'
+" let g:gruvbox_invert_signs = '1'
+" let g:gruvbox_improved_strings = '1'
+" let g:gruvbox_improved_warnings = '1'
+" let g:gruvbox_contrast_dark = 'medium'
+" let g:gruvbox_contrast_light = 'soft'
+" let g:gruvbox_invert_selection = '0'
+
+let g:oceanic_next_terminal_bold = 0
+let g:oceanic_next_terminal_italic = 0
+
 set termguicolors
 set background=dark
-colorscheme nord
+colorscheme OceanicNext
 
 set iskeyword+=-
 set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
@@ -115,14 +143,7 @@ let g:ale_fixers = {
 \    '*': ['remove_trailing_lines', 'trim_whitespace'],
 \    'python': ['yapf'],
 \    'javascript': ['prettier'],
-\    'typescript': ['prettier'],
-\    'css': ['prettier'],
-\    'scss': ['prettier'],
-\    'vue': ['prettier'],
-\    'jsx': ['prettier'],
-\    'yaml': ['prettier'],
-\    'json': ['prettier'],
-\    'markdown': ['prettier']
+\    'typescript': ['prettier']
 \}
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
@@ -138,13 +159,19 @@ let g:ale_set_highlights = 0
 " lightline
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'one',
+    \ 'colorscheme': 'oceanicnext',
     \ 'active': {
         \ 'left': [ [ 'mode', 'paste', 'gitstatus' ],
-        \           [ 'readonly', 'filename', 'modified' ] ],
+        \           [ 'readonly', 'relativepath', 'modified' ] ],
         \ 'right': [ [ 'lineinfo' ],
         \            [ 'percent' ],
         \            [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \},
+    \ 'inactive': {
+        \ 'left': [ [ 'gitstatus' ], [ 'relativepath', 'modified' ] ],
+        \ 'right': [ [ 'lineinfo' ],
+        \            [ 'percent' ],
+        \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \},
     \ 'component': {
         \ 'gitstatus': ' %{FugitiveHead()}'
