@@ -30,8 +30,13 @@ unset HISTFILE
 
 
 ### nord-dircolors
-test -r ~/.config/nord-dircolors/src/dir_colors && eval $(dircolors ~/.config/nord-dircolors/src/dir_colors)
+# test -r ~/.config/nord-dircolors/src/dir_colors && eval $(dircolors ~/.config/nord-dircolors/src/dir_colors)
 
+# yaourt -S lscolors-git
+source /usr/share/LS_COLORS/dircolors.sh
+# export LS_COLORS="di=36:fi=33:ln=33:ex=31:or=41;37"
+# https://the.exa.website/docs/colour-themes
+export EXA_COLORS="di=34:or=31:da=36:sn=36:sb=36:uu=32:gu=32:un=33:gn=33:ur=32:uw=32:ux=32:ue=32:gr=36:gw=36:gx=36:tr=33:tw=33:tx=33"
 
 ### stardict: yaourt -S sdcv
 export STARDICT_DATA_DIR="${XDG_CONFIG_HOME}/stardict"
@@ -54,24 +59,24 @@ color_reset="\033[0m"
 color_prefix="\033[38;2;"
 
 # gruvbox_dark
-# red="${color_prefix}251;73;52m"
-# green="${color_prefix}184;187;38m"
-# aqua="${color_prefix}142;192;124m"
-# yellow="${color_prefix}250;189;47m"
-# blue="${color_prefix}131;165;152m"
-# magenta="${color_prefix}211;134;155m"
-# orange="${color_prefix}254;128;25m"
-# neutro="${color_prefix}235;219;178m"
+red="${color_prefix}251;73;52m"
+green="${color_prefix}184;187;38m"
+aqua="${color_prefix}142;192;124m"
+yellow="${color_prefix}250;189;47m"
+blue="${color_prefix}131;165;152m"
+magenta="${color_prefix}211;134;155m"
+orange="${color_prefix}254;128;25m"
+neutro="${color_prefix}235;219;178m"
 
 # nord
-red="${color_prefix}191;97;106m"
-green="${color_prefix}163;190;140m"
-yellow="${color_prefix}235;203;139m"
-aqua="${color_prefix}129;161;193m"
-blue="${color_prefix}94;129;172m"
-magenta="${color_prefix}180;142;173m"
-orange="${color_prefix}208;135;112m"
-neutro="${color_prefix}136;192;208m"
+# red="${color_prefix}191;97;106m"
+# green="${color_prefix}163;190;140m"
+# yellow="${color_prefix}235;203;139m"
+# aqua="${color_prefix}129;161;193m"
+# blue="${color_prefix}94;129;172m"
+# magenta="${color_prefix}180;142;173m"
+# orange="${color_prefix}208;135;112m"
+# neutro="${color_prefix}136;192;208m"
 
 vcs_status() {
     GIT_PS1_SHOWDIRTYSTATE=1
