@@ -4,15 +4,15 @@
 {
     "layer": "bottom",
     "position": "top",
-    "height": 32,
+    "height": 36,
     "modules-left": [
         "sway/workspaces",
+        "sway/window",
         "sway/mode"
     ],
     "modules-center": [
     ],
     "modules-right": [
-        "sway/window",
         "idle_inhibitor",
         "custom/waybar-language",
         "network",
@@ -40,11 +40,21 @@
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>",
-        "tooltip": false
+        "tooltip": true,
+        "max-length": 80
     },
     "sway/window": {
         "format": "{}",
-        "max-length": 60
+        "rewrite": {
+            "(.*) - Mozilla Firefox": " $1",
+            "Mozilla Firefox": "",
+            "(.*) - Chromium": " $1",
+            "Chromium": "",
+            "(.*) - vim": " $1",
+            "(.*) - NVIM": " $1",
+            "(.*) - bash": " [$1]"
+        },
+        "max-length": 80
     },
     // NB. to check
     "wlr/taskbar": {
