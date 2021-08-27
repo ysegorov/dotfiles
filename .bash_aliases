@@ -150,16 +150,16 @@ n() {
     FIFO=${XDG_RUNTIME_DIR}/nnn.fifo
     OPENER=nuke
 
-    BMS="d:~/dev;g:~/git;D:~/downloads"
+    BMS="d:~/dev;g:~/git;o:~/own;D:~/downloads"
 
-    html='h:_w3m -dump $nnn'
-    mupdf='p:-_mupdf $nnn*'
-    leafpad='l:_|leafpad $nnn'
-    chmod_x='x:_chmod u+x $nnn'
+    html='h:!w3m -dump $nnn'
+    mupdf='p:-!mupdf $nnn*'
+    leafpad='l:!&leafpad $nnn'
+    chmod_x='x:!chmod u+x $nnn'
     preview='w:preview-tui'
-    odt2txt='d:-_odt2txt $nnn'
-    imv='i:-_imv $nnn*'
-    bat=';:-_bat --paging always $nnn*'
+    odt2txt='d:-!odt2txt $nnn'
+    imv='i:-!imv $nnn*'
+    bat=';:-!bat --paging always $nnn*'
 
     PLUG="${preview};${chmod_x};${mupdf};${leafpad};${html};${odt2txt};${imv};${bat}"
 
