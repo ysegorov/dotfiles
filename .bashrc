@@ -85,7 +85,7 @@ vcs_status() {
     GIT_PS1_SHOWCOLORHINTS=1
 
     if [ -z "$1" ]; then curdir="$(pwd)"; else curdir="$1"; fi
-    if [ -d "$curdir/.git" ]; then echo "g:$(__git_ps1 %s)"; return 0; fi
+    if [ -d "$curdir/.git" ]; then echo "$(__git_ps1 %s)"; return 0; fi
     if [ "$curdir" != '/' ]; then vcs_status $(dirname "$curdir"); fi
 }
 
