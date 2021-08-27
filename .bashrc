@@ -44,8 +44,8 @@ export STARDICT_DATA_DIR="${XDG_CONFIG_HOME}/stardict"
 
 # Change the window title of X terminals
 case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|alacritty)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|alacritty|foot)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~} - bash\007"'
         ;;
     screen)
         PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
