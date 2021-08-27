@@ -8,7 +8,8 @@ set $up k
 set $right l
 
 # set $term kitty --single-instance
-set $term kitty
+# set $term kitty
+set $term foot
 # set $term alacritty
 set $browser firefox-esr
 set $browser2 chromium
@@ -18,8 +19,12 @@ set $lock "swaylock -f -c 000000"
 
 set $bg "#1d2e38"
 
-set $dmenu $term --class=dmenu -e dmenu
-set $pmenu $term --class=pmenu -e pmenu
+# NB. for use with foot
+set $dmenu $term -a dmenu dmenu
+set $pmenu $term -a pmenu pmenu
+# NB. for use with kitty
+# set $dmenu $term --class=dmenu -e dmenu
+# set $pmenu $term --class=pmenu -e pmenu
 # set $password ~/.local/bin/gopass ls -f | wofi --show dmenu | xargs -i ~/.local/bin/gopass {} | head -n1 | wl-copy --paste-once
 
 workspace_layout tabbed
@@ -328,8 +333,8 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Matcha-sea'
     gsettings set $gnome-schema icon-theme 'Papirus'
     gsettings set $gnome-schema cursor-theme 'Breeze'
-    gsettings set $gnome-schema font-name 'PT Sans 12'
-    gsettings set $gnome-schema monospace-font-name 'PT Mono 12'
+    gsettings set $gnome-schema font-name 'PT Sans 14'
+    gsettings set $gnome-schema monospace-font-name 'PT Mono 14'
 }
 
 exec_always import-gsettings \
