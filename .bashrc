@@ -42,17 +42,6 @@ export EXA_COLORS="di=34:or=31:da=36:sn=36:sb=36:uu=32:gu=32:un=33:gn=33:ur=32:u
 export STARDICT_DATA_DIR="${XDG_CONFIG_HOME}/stardict"
 
 
-# Change the window title of X terminals
-case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|alacritty|foot)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~} - bash\007"'
-        ;;
-    screen)
-        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
-        ;;
-esac
-
-
 ### bash prompt
 # gruvbox colors for terminal supporting 24 bit colors
 color_reset="\033[0m"
@@ -85,27 +74,57 @@ vcs_status() {
     GIT_PS1_SHOWCOLORHINTS=1
 
     if [ -z "$1" ]; then curdir="$(pwd)"; else curdir="$1"; fi
-    if [ -d "$curdir/.git" ]; then echo "$(__git_ps1 %s)"; return 0; fi
+    if [ -d "$curdir/.git" ]; then printf " git:$(__git_ps1 %s)"; return 0; fi
     if [ "$curdir" != '/' ]; then vcs_status $(dirname "$curdir"); fi
-}
-
-retval() {
-    if [[ $? != 0 ]]; then printf "$red[!] "; else printf ""; fi
 }
 
 # function setting prompt string
 bash_prompt() {
-    local host_color=$(if [[ $UID == 0 ]]; then echo "$red"; else echo "$neutro"; fi)
-    local dir="\$(if [[ -w \$PWD ]]; then echo \"\[$aqua\]\"; else echo \"\[$yellow\]\"; fi)\w"
+    local ret=$?  # NB.  must be on the first line
+    PS1=""
 
-    PS1="\$(retval)\[$host_color\][\u@\h \t]\[$color_reset\]:$dir\[$magenta\] \[\$(vcs_status)\] \[$color_reset\]\$ "
+    if [[ $ret != 0 ]]; then local retval="\[${red}\][!] "; else local retval=""; fi
+    if [[ $UID == 0 ]]; then local hostcolor="${red}"; else local hostcolor="${neutro}"; fi
+    if [[ -w $PWD ]]; then local dircolor="${aqua}"; else local dircolor="${yellow}"; fi
+    if [[ -z $VIRTUAL_ENV ]]; then
+        local ve=""
+    else
+        local nm=$(basename "$VIRTUAL_ENV")
+        if [[ ${nm} == 'env' ]]; then
+            local ve="($(basename $(dirname \"$VIRTUAL_ENV\"))) "
+        else
+            local ve="(${nm}) "
+        fi
+    fi
+    if [[ -z $NNNLVL ]]; then local nnnlvl=""; else local nnnlvl="N$NNNLVL "; fi
+
+    PS1+="\n"
+    PS1+="${nnnlvl}"
+    PS1+="${ve}"
+    PS1+="\[${hostcolor}\][\u@\h \t]"
+    PS1+="\[${color_reset}\]:"
+    PS1+="\[${dircolor}\]\w"
+    PS1+="\[${magenta}\]$(vcs_status)"
+    PS1+="\n"
+    PS1+="${retval}"
+    PS1+="\[${color_reset}\]\$ "
 }
 
-[[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
-bash_prompt
-unset -f bash_prompt
+# Change the window title of X terminals
+title() {
+    case ${TERM} in
+        xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|alacritty|foot)
+            echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~} - bash\007"
+            ;;
+        screen)
+            echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033"
+            ;;
+    esac
+}
+PROMPT_COMMAND="bash_prompt;title"
 
-[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+
+[[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
 
 
 ### pgenv: git clone https://github.com/theory/pgenv.git ~/
@@ -143,8 +162,8 @@ fi
 
 
 ### pyenv: git clone https://github.com/pyenv/pyenv.git ~/.local/
-###        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.local/pyenv/plugins/
 export PYENV_ROOT="${HOME}/.local/pyenv"
+export VENVS_ROOT="${HOME}/.local/venvs"
 
 if [ -d "${PYENV_ROOT}" ]; then
     # export PATH="$PYENV_ROOT/bin:$PATH"
@@ -165,28 +184,13 @@ if [ -d "${PYENV_ROOT}" ]; then
         fi
 
         case "$command" in
-            activate|deactivate|rehash|shell)
+            rehash|shell)
                 eval "$(pyenv "sh-$command" "$@")";;
             *)
                 command pyenv "$command" "$@";;
         esac
     }
 
-    # pyenv-virtualenv plugin
-    export PATH="${PYENV_ROOT}/plugins/pyenv-virtualenv/shims:${PATH}";
-    export PYENV_VIRTUALENV_INIT=1;
-    _pyenv_virtualenv_hook() {
-        local ret=$?
-        if [ -n "$VIRTUAL_ENV" ]; then
-            eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet || true)" || true
-        else
-            eval "$(pyenv sh-activate --quiet || true)" || true
-        fi
-        return $ret
-    };
-    if ! [[ "${PROMPT_COMMAND}" =~ _pyenv_virtualenv_hook ]]; then
-        PROMPT_COMMAND="_pyenv_virtualenv_hook;${PROMPT_COMMAND}";
-    fi
 fi
 
 
