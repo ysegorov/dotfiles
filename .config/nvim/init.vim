@@ -18,9 +18,6 @@ call plug#begin($VIMCACHE . 'plugged')
     " Plug 'mkarmona/colorsbox'
 
     Plug 'dense-analysis/ale'
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Plug 'deoplete-plugins/deoplete-jedi'
-    Plug 'davidhalter/jedi-vim'
 
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
@@ -30,6 +27,11 @@ call plug#begin($VIMCACHE . 'plugged')
     Plug 'mhinz/vim-signify'
 
     Plug 'farmergreg/vim-lastplace'
+
+    Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2'
+    Plug 'ncm2/ncm2-jedi'
+    Plug 'ncm2/ncm2-bufword'
 
     Plug '~/dev/vim-yaggy'
 
@@ -129,7 +131,8 @@ set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
 
 let mapleader=","
 
-let g:python3_host_prog='~/.local/pyenv/versions/neovim_py3/bin/python'
+let g:python_host_prog='~/.local/venvs/neovim_py2/bin/python'
+let g:python3_host_prog='~/.local/venvs/neovim/bin/python3'
 
 " netrw
 let g:netrw_dirhistmax  = 0
@@ -142,6 +145,10 @@ let g:ale_linters = {
 \   'typescript': ['eslint'],
 \   'vue': ['eslint']
 \}
+" let g:ale_python_black_executable='/home/egorov/.local/venvs/neovim/bin/black'
+" let g:ale_python_black_use_global=1
+" let g:ale_python_yapf_executable='/home/egorov/.local/venvs/neovim/bin/yapf'
+" let g:ale_python_yapf_use_global=1
 let g:ale_fixers = {
 \    '*': ['remove_trailing_lines', 'trim_whitespace'],
 \    'python': ['yapf'],
@@ -151,11 +158,11 @@ let g:ale_fixers = {
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g_ale_set_quickfix = 1
-" Lint only when saving file
+" Lint asap
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_insert_leave = 1
 " Apply auto fixes when saving file
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 " Do not highlight area with error (only set sign marker)
 let g:ale_set_highlights = 0
 
@@ -190,23 +197,18 @@ nnoremap <leader>gs :Git status<CR>
 nnoremap <leader>gd :Git diff<CR>
 nnoremap <leader>gb :Git blame<CR>
 
-" deoplete
-" let g:deoplete#enable_at_startup = 1
 
-" jedi
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = "right"
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 0
-let g:jedi#show_call_signatures = "1"
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=menuone,noselect,noinsert
+set shortmess+=c
+inoremap <c-c> <ESC>
+let ncm2#popup_delay = 5
+let ncm2#complete_length = [[1, 1]]
+let g:ncm2#matcher = 'substrfuzzy'
+let g:ncm2_jedi#python_version = 2
+" let g:ncm2_jedi#environment = "env"
+
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType scss setlocal iskeyword+=@-@ tabstop=2
