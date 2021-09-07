@@ -43,12 +43,6 @@ alias mksecret="cat /dev/urandom | tr -dc \"a-zA-Z0-9\" | fold -w 128 | head -n 
 # yaourt -S sharutils
 command -v uuencode &>/dev/null && alias mkpass="dd if=/dev/urandom count=1 2> /dev/null | uuencode -m - | sed -ne 2p | cut -c-40"
 
-# virtualenv
-alias cdsrc="cd ${VIRTUAL_ENV}/src"
-alias cdsitepackages="cd ${VIRTUAL_ENV}/lib/python*/site-packages/"
-alias cdproject="cd ${VIRTUAL_ENV:-~}"
-#alias cdproject="cd ${DEV_ROOT:-VIRTUAL_ENV}; if [ $(basename ${PWD}) = \"env\" ]; then cd ..; fi"
-
 
 # postgres
 alias psql='psql -h localhost'
@@ -132,6 +126,28 @@ dev () {
     [[ -n $folder ]] || return 1
 
     cd ${folder}
+
+    # NB. to create python2-based virtualenv:
+    #     $ cd /path/to/project
+    #     $ PYENV_VERSION=2.7.18 pyenv exec virtualenv env
+
+    # NB. to create python3-based virtualenv:
+    #     $ cd /path/to/project
+    #     $ PYENV_VERSION=3.9.7 pyenv exec python -m venv env
+
+    if [ -d "env" ]; then
+        venv="${PWD}/env"
+        if [ -f "${venv}/bin/activate" ]; then
+            echo "activating venv ${venv}"
+            source "${venv}/bin/activate"
+
+            # virtualenv helpers
+            alias cdsrc="cd ${VIRTUAL_ENV}/src"
+            alias cdsitepackages="cd ${VIRTUAL_ENV}/lib/python*/site-packages/"
+            alias cdproject="cd ${folder}"
+
+        fi
+    fi
 
 }
 
