@@ -49,6 +49,12 @@ alias psql='psql -h localhost'
 alias pgsize='psql -c "SELECT pg_database.datname, pg_database_size(pg_database.datname), pg_size_pretty(pg_database_size(pg_database.datname)) FROM pg_database ORDER BY pg_database_size DESC;"'
 
 
+# firefox
+alias ffa='firefox-esr --no-remote -P a91'
+alias ffb='firefox-esr --no-remote -P b91'
+alias ffo='firefox-esr --no-remote -P o91'
+
+
 # haskell
 alias ghci='ghci -v0 -ignore-dot-ghci -ghci-script $HOME/.local/ghc/ghci.conf'
 
@@ -89,6 +95,11 @@ alias tvpn="cd $HOME/work/igor/tolsha/yuri && sudo openvpn client.conf"
 # alias timers='sys list-timers'
 # alias timersu='sysu list-timers'
 
+# poetry
+alias poetry="${VENVS_ROOT}/poetry/bin/poetry"
+# httpie
+alias http="${VENVS_ROOT}/httpie/bin/http"
+
 
 md() {
     [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
@@ -118,10 +129,10 @@ dev () {
 
     if [ "$#" -gt 0 ]; then q="-q $@"; else q=""; fi
 
-    p1=$(fd -t d -d 1 -a . /home/dotprom/dev)
-    p2=$(fd -t d -d 1 -a . "${HOME}/dev")
+    p1=$(fd -t d -d 1 -a . /home/*/dev /home/*/dev/*-monorepo/{libs,apps,services} 2>/dev/null)
+    # p2=$(fd -t d -d 1 -a . "${HOME}/dev")
 
-    folder=$(printf '%s\n' "${p1[@]}" "${p2[@]}" | fzf --select-1 --reverse --no-bold -d "/" -n -1 --with-nth=-1 $q)
+    folder=$(printf '%s\n' "${p1[@]}" | fzf --select-1 --reverse --no-bold -d "/" -n -1 --with-nth=-1 $q)
 
     [[ -n $folder ]] || return 1
 
@@ -168,14 +179,14 @@ n() {
 
     BMS="d:~/dev;g:~/git;o:~/own;D:~/downloads"
 
-    html='h:!w3m -dump $nnn'
-    mupdf='p:-!mupdf $nnn*'
-    leafpad='l:!&leafpad $nnn'
-    chmod_x='x:!chmod u+x $nnn'
+    html='h:!w3m -dump "$nnn"'
+    mupdf='p:-!mupdf "$nnn"*'
+    leafpad='l:!&leafpad "$nnn"'
+    chmod_x='x:!chmod u+x "$nnn"'
     preview='w:preview-tui'
-    odt2txt='d:-!odt2txt $nnn'
-    imv='i:-!imv $nnn*'
-    bat=';:-!bat --paging always $nnn*'
+    odt2txt='d:-!odt2txt "$nnn"'
+    imv='i:-!imv "$nnn"*'
+    bat=';:-!bat --paging always --terminal-width 90 "$nnn"*'
 
     PLUG="${preview};${chmod_x};${mupdf};${leafpad};${html};${odt2txt};${imv};${bat}"
 

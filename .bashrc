@@ -36,7 +36,26 @@ unset HISTFILE
 source /usr/share/LS_COLORS/dircolors.sh
 # export LS_COLORS="di=36:fi=33:ln=33:ex=31:or=41;37"
 # https://the.exa.website/docs/colour-themes
-export EXA_COLORS="di=34:or=31:da=36:sn=36:sb=36:uu=32:gu=32:un=33:gn=33:ur=32:uw=32:ux=32:ue=32:gr=36:gw=36:gx=36:tr=33:tw=33:tx=33"
+EXA_COLORS=""
+EXA_COLORS+="di=34:or=38;5;202:bO=38;5;202:ln=38;5;216:"
+EXA_COLORS+="da=36:sn=36:sb=36:"
+EXA_COLORS+="uu=32:gu=32:un=33:gn=33:ur=32:uw=32:ux=32:ue=32:gr=36:gw=36:gx=36:"
+EXA_COLORS+="tr=33:tw=33:tx=33:"
+EXA_COLORS+="*.py=38;5;115:"
+# EXA_COLORS+="*.json=38;5;178;"
+export EXA_COLORS
+
+# yaourt -S bat
+export BAT_THEME="Nord"
+
+# yaourt -S fzf
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"
+FZF_DEFAULT_OPTS+="--color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 "
+FZF_DEFAULT_OPTS+="--color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1 "
+FZF_DEFAULT_OPTS+="--color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac "
+FZF_DEFAULT_OPTS+="--color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b "
+export FZF_DEFAULT_OPTS
+
 
 ### stardict: yaourt -S sdcv
 export STARDICT_DATA_DIR="${XDG_CONFIG_HOME}/stardict"
@@ -50,12 +69,12 @@ color_prefix="\033[38;2;"
 # gruvbox_dark
 red="${color_prefix}251;73;52m"
 green="${color_prefix}184;187;38m"
-aqua="${color_prefix}142;192;124m"
 yellow="${color_prefix}250;189;47m"
 blue="${color_prefix}131;165;152m"
 magenta="${color_prefix}211;134;155m"
+aqua="${color_prefix}142;192;124m"
+neutro="${color_prefix}213;196;161m"
 orange="${color_prefix}254;128;25m"
-neutro="${color_prefix}235;219;178m"
 
 # nord
 # red="${color_prefix}191;97;106m"
