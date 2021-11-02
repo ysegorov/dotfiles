@@ -12,7 +12,7 @@ unset confirmappend
   set date_format       = "%Y-%m-%d %H:%M"
   set delete
   set edit_headers
-  set editor            = "vim +:silent+?^$"
+  set editor            = "nvim +:silent+?^$"
   set fast_reply
   set fcc_attach
   set folder            = ~/.mail
