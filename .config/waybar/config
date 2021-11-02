@@ -4,7 +4,7 @@
 {
     "layer": "bottom",
     "position": "top",
-    "height": 36,
+    "height": 40,
     "modules-left": [
         "sway/workspaces",
         "sway/window",
@@ -46,13 +46,13 @@
     "sway/window": {
         "format": "{}",
         "rewrite": {
-            "(.*) - Mozilla Firefox": " $1",
+            "(.*) (-|–|—) Mozilla Firefox": "  $1",
             "Mozilla Firefox": "",
-            "(.*) - Chromium": " $1",
+            "(.*) - Chromium": "  $1",
             "Chromium": "",
-            "(.*) - vim": " $1",
-            "(.*) - NVIM": " $1",
-            "(.*) - bash": " [$1]"
+            "(.*) - vim": "  $1",
+            "(.*) - NVIM": "  $1",
+            "(.*) - bash": "  [$1]"
         },
         "max-length": 80
     },
@@ -66,14 +66,14 @@
         "on-click-middle": "close"
     },
     "tray": {
-        "icon-size": 21,
+        "icon-size": 22,
         "spacing": 10
     },
     "custom/waybar-language": {
       "exec": "waybar-language",
       "return-type": "json",
       "interval": 30,
-      "format": "  {}",
+      "format": "  {}",
       "signal": 1,
       "tooltip": false
     },

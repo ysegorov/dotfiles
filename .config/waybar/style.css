@@ -10,27 +10,55 @@
  * https://github.com/voronianski/oceanic-next-color-scheme
  *
  */
-@define-color bg #1b2b34;
-@define-color bg0 #1d2e38;
-@define-color bg1 #0b2433;
-@define-color gray1 #343D46;
-@define-color gray2 #4F5B66;
-@define-color gray3 #65737E;
-@define-color gray4 #A7ADBA;
-@define-color gray5 #C0C5CE;
-@define-color gray6 #CDD3DE;
-@define-color fg #D8DEE9;
-@define-color red #EC5f67;
-@define-color orange #F99157;
-@define-color yellow #FAC863;
-@define-color green #99C794;
-@define-color cyan #5FB3B3;
-@define-color blue #6699CC;
-@define-color blue0 #285577;
-@define-color blue1 #4c7899;
-@define-color magenta #C594C5;
-@define-color brown #AB7967;
+/* @define-color bg #1b2b34; */
+/* @define-color bg0 #1d2e38; */
+/* @define-color bg1 #0b2433; */
+/* @define-color gray1 #343D46; */
+/* @define-color gray2 #4F5B66; */
+/* @define-color gray3 #65737E; */
+/* @define-color gray4 #A7ADBA; */
+/* @define-color gray5 #C0C5CE; */
+/* @define-color gray6 #CDD3DE; */
+/* @define-color fg #D8DEE9; */
+/* @define-color red #EC5f67; */
+/* @define-color orange #F99157; */
+/* @define-color yellow #FAC863; */
+/* @define-color green #99C794; */
+/* @define-color cyan #5FB3B3; */
+/* @define-color blue #6699CC; */
+/* @define-color blue0 #285577; */
+/* @define-color blue1 #4c7899; */
+/* @define-color magenta #C594C5; */
+/* @define-color brown #AB7967; */
+
+
+/* gruvbox-material medium */
+@define-color bg       #282828;
+@define-color bg0      #32302f;
+@define-color bg1      #45403d;
+@define-color bg2      #5a524c;
+@define-color fg       #d4be98;
+@define-color fg1      #ddc7a1;
+@define-color red      #ea6962;
+@define-color green    #a9b665;
+@define-color yellow   #d8a657;
+@define-color blue     #7daea3;
+@define-color purple   #d3869b;
+@define-color aqua     #89b482;
+@define-color orange   #e78a4e;
+
 @define-color white-alpha-01 rgba(255, 255, 255, .1);
+@define-color white-alpha-03 rgba(255, 255, 255, .3);
+@define-color white-alpha-05 rgba(255, 255, 255, .5);
+@define-color white-alpha-06 rgba(255, 255, 255, .6);
+
+@define-color primary @bg2;
+@define-color hint @aqua;
+@define-color info @green;
+@define-color info2 @magenta;
+@define-color notice @yellow;
+@define-color warning @orange;
+@define-color critical @red;
 
 /* -----------------------------------------------------------------------------
  * Base styles
@@ -49,10 +77,10 @@
 #waybar {
     background: @bg0;
     color: @fg;
-    font-family: Hack Nerd Font, monospace;
-    font-size: 18px;
+    font-family: UbuntuMono Nerd Font, monospace;
+    font-size: 23px;
     letter-spacing: -0.25px;
-    border-bottom: 3px solid @blue0;
+    border-bottom: 3px solid @primary;
 }
 
 /* Each module */
@@ -90,79 +118,79 @@
 }
 
 #battery.discharging {
-    color: @yellow;
+    color: @notice;
 }
 
 #battery.warning {
-    color: @yellow;
+    color: @notice;
 }
 
 #battery.critical {
-    color: @red;
+    color: @critical;
 }
 
 #battery.warning.discharging {
     color: @bg;
-    background-color: @yellow;
+    background-color: @notice;
 }
 
 #battery.critical.discharging {
     color: @bg;
-    background-color: @red;
+    background-color: @critical;
 }
 
 #clock {
-    color: @cyan;
+    /* color: @hint; */
     padding-left: 10px;
-    background-color: @bg0;
-    font-size: 16px;
+    background-color: @bg1;
+    font-size: 21px;
 }
 
 #cpu {
 }
 
 #cpu.warning {
-    color: @orange;
+    color: @warning;
 }
 
 #cpu.critical {
-    color: @red;
+    color: @critical;
 }
 
 #memory {
 }
 
 #memory.warning {
-    color: @orange;
+    color: @warning;
 }
 
 #memory.critical {
-    color: @red;
+    color: @critical;
 }
 
 #mode {
-    background: @gray2;
+    background: @white-alpha-01;
     border-bottom: 3px solid @fg;
     padding-top: 3px;
     padding-left: 10px;
     padding-right: 20px;
     margin-left: 10px;
     margin-bottom: 0;
-    font-size: 16px;
+    font-size: 22px;
 }
 
 #network {
 }
 
 #network.disconnected {
-    color: @orange;
+    color: @warning;
 }
 
 #pulseaudio {
 }
 
 #pulseaudio.muted {
-    color: @orange;
+    color: @warning;
 }
 
 #temperature {
@@ -170,7 +198,7 @@
 }
 
 #temperature.critical {
-    color: @red;
+    color: @critical;
 }
 
 #tray {
@@ -179,33 +207,33 @@
 }
 
 #custom-waybar-language {
-    color: @green;
+    /* color: @info; */
 }
 
 #custom-waybar-language.ru {
-    color: @magenta;
+    color: @hint;
 }
 
 #idle_inhibitor {
-    color: @yellow;
+    color: @notice;
     font-size: 20px;
 }
 
 #idle_inhibitor.activated {
-    color: @green;
+    color: @hint;
 }
 
 #window {
     padding: 0 10px 0 10px;
     margin-left: 5px;
-    color: @gray5;
-    background-color: @blue0;
+    color: @white-alpha-06;
+    background-color: @primary;
 }
 window#waybar.empty #window {
     padding: 0;
     margin: 0;
     font-size: 0;
-    border-right: 1px solid @blue0;
+    border-right: 1px solid @primary;
 }
 
 #workspaces button {
@@ -213,7 +241,7 @@ window#waybar.empty #window {
     padding-top: 3px;
     padding-left: 5px;
     padding-right: 5px;
-    color: @gray6;
+    color: @white-alpha-06;
 }
 
 #workspaces button + button {
@@ -221,9 +249,9 @@ window#waybar.empty #window {
 }
 
 #workspaces button.focused {
-    border-color: @blue0;
-    color: @fg;
-    background-color: @blue0;
+    border-color: @primary;
+    /* color: @fg; */
+    background-color: @primary;
 }
 #workspaces button.focused + button,
 #workspaces button.focused {
@@ -231,8 +259,8 @@ window#waybar.empty #window {
 }
 
 #workspaces button.urgent {
-    background-color: @red;
+    background-color: @critical;
     color: @fg;
-    border-bottom: 3px solid @blue0;
+    border-bottom: 3px solid @primary;
     padding-top: 3px;
 }
