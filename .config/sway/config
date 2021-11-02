@@ -15,9 +15,34 @@ set $browser firefox-esr
 set $browser2 chromium
 # set $chrome google-chrome-stable
 
-set $lock "swaylock -f -c 000000"
+###############################
+#### Gruvbox Material Dark ####
+###############################
+set $bg       "#282828"
+set $bg1      "#32302f"
+set $bg2      "#45403d"
+set $bg3      "#5a524c"
+set $fg       "#d4be98"
+set $fg1      "#ddc7a1"
+set $red      "#ea6962"
+set $green    "#a9b665"
+set $yellow   "#d8a657"
+set $blue     "#7daea3"
+set $purple   "#d3869b"
+set $aqua     "#89b482"
+set $orange   "#e78a4e"
 
-set $bg "#1d2e38"
+set $lock "swaylock -f -c 282828"
+
+#                           border     background    text       indicator    child border
+# client.focused              #81a1c1    #285577       #ffffff    #2e9ef4      #81a1c1
+# client.unfocused            #4c566a    #343d46       #888888    #292d2e      #343d46
+# client.focused_inactive     #343d46    #343d46       #888888    #292d2e      #343d46
+
+#                           border     background    text       indicator    child border
+client.focused              $fg1       $bg           $fg        $orange      $bg2
+client.unfocused            $bg1       $bg2          $fg1       $fg1         $bg1
+client.focused_inactive     $bg1       $bg2          $fg1       $fg1         $bg1
 
 # NB. for use with foot
 set $dmenu $term -a dmenu dmenu
@@ -42,11 +67,6 @@ hide_edge_borders smart
 font pango:monospace 0
 titlebar_border_thickness 1
 titlebar_padding 1
-
-#                           border     background    text       indicator    child border
-client.focused              #81a1c1    #285577       #ffffff    #2e9ef4      #81a1c1
-client.unfocused            #4c566a    #343d46       #888888    #292d2e      #343d46
-client.focused_inactive     #343d46    #343d46       #888888    #292d2e      #343d46
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
